@@ -1,0 +1,966 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ERPAgentCaller</name>
+    </assembly>
+    <members>
+        <member name="T:Seec.Marketing.ErpBaseHelper">
+            <summary>
+            Erp 介接 Helper 基底。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.ErpWhseInfo">
+            <summary>
+            ERP 倉庫表格資料。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpWhseInfo.SecondaryInventoryName">
+            <summary>
+            名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpWhseInfo.OrganizationId">
+            <summary>
+            倉庫 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpWhseInfo.Attribute15">
+            <summary>
+            屬性 15。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.ErpBaseHelper.GetErpWhseInfo(System.Int32[])">
+            <summary>
+            取得 ERP 倉庫資訊。
+            </summary>
+            <param name="mktgRanges">市場範圍陣列集合（1:內銷 2:外銷; 若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.PriceBookInfo">
+            <summary>
+            ERP 價目表表格資料。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.PriceBookInfo.ListName">
+            <summary>
+            價目表名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.PriceBookInfo.PriceListId">
+            <summary>
+            價目表 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.PriceBookInfo.InventoryItemId">
+            <summary>
+            料號 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.PriceBookInfo.Segment1">
+            <summary>
+            料號。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.PriceBookInfo.PrimaryUnitOFMeasure">
+            <summary>
+            單位。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.PriceBookInfo.Description">
+            <summary>
+            摘要。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.PriceBookInfo.ListPrice">
+            <summary>
+            牌價。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.PriceBookInfo.CurrencyCode">
+            <summary>
+            幣別。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.ErpBaseHelper.GetPriceBookInfo(System.Int64,System.String[])">
+            <summary>
+            取得 ERP 價目表資訊
+            </summary>
+            <param name="priceListId">價目表 ID（若為 null 則表示全部）。</param> 
+            <param name="items">料號陣列集合（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+        </member>
+        <member name="M:Seec.Marketing.ErpBaseHelper.GetPriceBookListPrice(Seec.Marketing.ErpBaseHelper.PriceBookInfo[],System.String)">
+            <summary>
+            取得料號牌價。
+            </summary>
+            <param name="priceBookInfos">ERP 價目表表格資料。</param>
+            <param name="item">料號。</param>
+            <returns></returns>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.CurrencyBookInfo">
+            <summary>
+            ERP 幣別表表格資料。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.CurrencyBookInfo.ListName">
+            <summary>
+            價目表名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.CurrencyBookInfo.PriceListId">
+            <summary>
+            價目表 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.CurrencyBookInfo.CurrencyCode">
+            <summary>
+            幣別。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.ErpBaseHelper.GetCurrencyBookInfo(System.Nullable{System.Int64},System.String)">
+            <summary>
+            取得 ERP 幣別表資訊
+            </summary>
+            <param name="priceListId">價目表 ID（若為 null 則表示全部）。</param> 
+            <param name="currenctCode">幣別（若為 null 或 empty 則略過條件檢查）。</param>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.ErpWhseOnHand">
+            <summary>
+            ERP 倉庫在手量。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpWhseOnHand.Whse">
+            <summary>
+            倉庫。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpWhseOnHand.ErpOnHand">
+            <summary>
+            ERP 在手量。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.OnHandInfo">
+            <summary>
+            ERP 倉庫在手量表格資料。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.OnHandInfo.InventoryItemId">
+            <summary>
+            料號 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.OnHandInfo.Segment1">
+            <summary>
+            料號。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.OnHandInfo.SubinventoryCode">
+            <summary>
+            倉庫。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.OnHandInfo.OnhandQty">
+            <summary>
+            在手量。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.ErpBaseHelper.GetOnHandInfo(System.String[],System.String)">
+            <summary>
+            取得 ERP 倉庫在手量資訊
+            </summary>
+            <param name="items">料號陣列集合（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+            <param name="whse">倉庫。</param>
+        </member>
+        <member name="M:Seec.Marketing.ErpBaseHelper.GetOnHandQty(Seec.Marketing.ErpBaseHelper.OnHandInfo[],System.String,System.String)">
+            <summary>
+            取得料號在手量。
+            </summary>
+            <param name="onHandInfos">ERP 倉庫在手量陣列集合。</param>
+            <param name="whse">倉庫。</param>
+            <param name="item">料號。</param>
+        </member>
+        <member name="M:Seec.Marketing.ErpBaseHelper.GetPerWhseOnHandQty(Seec.Marketing.ErpBaseHelper.OnHandInfo[],Seec.Marketing.ErpBaseHelper.ErpWhseInfo[],System.String)">
+            <summary>
+            取得每個倉庫的料號在手量。
+            </summary>
+            <param name="onHandInfos">ERP 倉庫在手量陣列集合。</param>
+            <param name="erpWhseInfos">ERP 倉庫陣列集合。</param>
+            <param name="item">料號。</param>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll">
+            <summary>
+            SO-HEADERS-INTERFACE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.CreationDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.CreatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.LastUpdateDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.LastUpdatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.OriginalSystemReference">
+            <summary>
+            內銷-訂單號碼；外銷-交貨單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.CustomerId">
+            <summary>
+            客戶檔之 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.OrderTypeId">
+            <summary>
+            客戶檔之 ORDER_TYPE_ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.OrderSourceId">
+            <summary>
+            常數數值：1103。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.OrderCategory">
+            <summary>
+            常數：R。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.DateOrdered">
+            <summary>
+            訂單日期。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.CurrencyCode">
+            <summary>
+            幣別。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.ConversionTypeCode">
+            <summary>
+            常數數值：1020。
+            外銷用。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.SalesRepId">
+            <summary>
+            客戶檔之營業員 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.InvoiceToSiteUseId">
+            <summary>
+            客戶檔之帳單地點 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.ShipToSiteUseId">
+            <summary>
+            客戶檔之送貨地點 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.PriceListId">
+            <summary>
+            客戶檔之價目表 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOHeadersInterfaceAll.EnteredStateId">
+            <summary>
+            常數數值：1。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll">
+            <summary>
+            SO-LINES-INTERFACE-ALL。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.CreationDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.CreatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.LastUpdateDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.LastUpdatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.OriginalSystemReference">
+            <summary>
+            內銷-訂單號碼；外銷-交貨單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.OriginalSystemLineReference">
+            <summary>
+            明細項次，ORIGINAL_SYSTEM_REFERENCE + ORIGINAL_SYSTEM_LINE_REFERENCE，兩個欄位串聯須為 UNIQUE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.LineNumber">
+            <summary>
+            明細項次。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.LineType">
+            <summary>
+            常數：REGULAR。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.UnitCode">
+            <summary>
+            常數：EA。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.OrderedQuantity">
+            <summary>
+            訂單數量。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.DateRequestedCurrent">
+            <summary>
+            訂單日期。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.InventoryItemId">
+            <summary>
+            料號 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.ScheduledShipmentDate">
+            <summary>
+            預計出貨日(內外銷都相同規則)。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.WarehouseId">
+            <summary>
+            常數數值：228。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.Attribute2">
+            <summary>
+            內銷-專案編號；外銷-訂單單號。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.CalculatePrice">
+            <summary>
+            常數：Y。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.OrderSourceId">
+            <summary>
+            常數數值：1103。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.ShipToCustomerId">
+            <summary>
+            客戶 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLinesInterfaceAll.ScheduleStatusCode">
+            <summary>
+            常數數值：DEMANDED。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface">
+            <summary>
+            SO-LINE-DETAILS-INTERFACE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.CreationDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.CreatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.LastUpdateDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.LastUpdatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.OrderSourceId">
+            <summary>
+            常數數值：1103。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.OriginalSystemReference">
+            <summary>
+            內銷-訂單號碼；外銷-交貨單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.OriginalSystemLineReference">
+            <summary>
+            明細項次，ORIGINAL_SYSTEM_REFERENCE + ORIGINAL_SYSTEM_LINE_REFERENCE 兩個欄位串聯須為 UNIQUE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.Quantity">
+            <summary>
+            訂單數量。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.ScheduleDate">
+            <summary>
+            預計出貨日(內外銷都相同規則)。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.Subinventory">
+            <summary>
+            倉庫名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.WarehouseId">
+            <summary>
+            常數數值：228。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOLineDetailsInterface.ScheduleStatusCode">
+            <summary>
+            常數數值：DEMANDED。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface">
+            <summary>
+            SO-PRICE-ADJUSTMENTS-INTERFACE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface.CreationDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface.CreatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface.LastUpdateDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface.LastUpdatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface.OrderSourceId">
+            <summary>
+            常數數值：1103。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface.OriginalSystemReference">
+            <summary>
+            內銷-訂單號碼；外銷-交貨單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface.OriginalSystemLineReference">
+            <summary>
+            明細項次。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface.DiscountId">
+            <summary>
+            折扣 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.SOPriceAdjustmentsInterface.Percent">
+            <summary>
+            折扣比率數值。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.ErpUploader">
+            <summary>
+            上傳 ERP。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpUploader.SOHeadersInterfaceAll">
+            <summary>
+            SO-HEADERS-INTERFACE-ALL。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpUploader.SOLinesInterfaceAllList">
+            <summary>
+            SO-LINES-INTERFACE-ALL。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpUploader.SOLineDetailsInterfaceList">
+            <summary>
+            SO-LINE-DETAILS-INTERFACE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpUploader.SOPriceAdjustmentsInterfaceList">
+            <summary>
+            SO-PRICE-ADJUSTMENTS-INTERFACE。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.ErpBaseHelper.ErpOrderInfo">
+            <summary>
+            ERP 訂單表格資料。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.HeaderId">
+            <summary>
+            ERP 訂單 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.CreationDate">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.CreatedBY">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.OriginalSystemSourceCode">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.OriginalSystemReference">
+            <summary>
+            XS 營銷訂單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.OrderNumber">
+            <summary>
+            ERP 訂單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.OrderStatus">
+            <summary>
+            ERP 訂單狀態（已輸入,已登錄,已超額,超額已核發,已取消,已關閉）。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.ShipNumber">
+            <summary>
+            ERP 交貨號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.Attribute1">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.Attribute2">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.Attribute3">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.LastUpdateDate">
+            <summary>
+            訂單狀態最後更新時間。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.ErpBaseHelper.ErpOrderInfo.OpenFlag">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.ErpBaseHelper.GetErpOrderInfo(System.Int64[],System.String[],System.Int32[])">
+            <summary>
+            取得 ERP 訂單資訊
+            </summary>
+            <param name="headerIds">ERP 訂單 ID（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+            <param name="originalSystemReferences">XS 營銷訂單號碼（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+            <param name="orderNumbers">ERP 訂單號碼（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.ErpAgent">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.#ctor">
+            <remarks/>
+        </member>
+        <member name="E:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetCustomersInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetWarehouseInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetInventoryInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetOnHandInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetPriceBookInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetCurrencyBookInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetDiscountsInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.UploadErpCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetErpOrderInfoCompleted">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetCustomersInfo(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.BeginGetCustomersInfo(System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.EndGetCustomersInfo(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetCustomersInfoAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetCustomersInfoAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetWarehouseInfo(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.BeginGetWarehouseInfo(System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.EndGetWarehouseInfo(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetWarehouseInfoAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetWarehouseInfoAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetInventoryInfo(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.BeginGetInventoryInfo(System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.EndGetInventoryInfo(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetInventoryInfoAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetInventoryInfoAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetOnHandInfo(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.BeginGetOnHandInfo(System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.EndGetOnHandInfo(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetOnHandInfoAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetOnHandInfoAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetPriceBookInfo(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.BeginGetPriceBookInfo(System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.EndGetPriceBookInfo(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetPriceBookInfoAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetPriceBookInfoAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetCurrencyBookInfo(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.BeginGetCurrencyBookInfo(System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.EndGetCurrencyBookInfo(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetCurrencyBookInfoAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetCurrencyBookInfoAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetDiscountsInfo(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.BeginGetDiscountsInfo(System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.EndGetDiscountsInfo(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetDiscountsInfoAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetDiscountsInfoAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.UploadErp(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.BeginUploadErp(System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.EndUploadErp(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.UploadErpAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.UploadErpAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetErpOrderInfo(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.BeginGetErpOrderInfo(System.String,System.String,System.AsyncCallback,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.EndGetErpOrderInfo(System.IAsyncResult)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetErpOrderInfoAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.GetErpOrderInfoAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgent.CancelAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetCustomersInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetCustomersInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.GetCustomersInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetWarehouseInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetWarehouseInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.GetWarehouseInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetInventoryInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetInventoryInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.GetInventoryInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetOnHandInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetOnHandInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.GetOnHandInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetPriceBookInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetPriceBookInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.GetPriceBookInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetCurrencyBookInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetCurrencyBookInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.GetCurrencyBookInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetDiscountsInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetDiscountsInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.GetDiscountsInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.UploadErpCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.UploadErpCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.UploadErpCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetErpOrderInfoCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.GetErpOrderInfoCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.GetErpOrderInfoCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.TrustAllCertificatePolicy">
+            <summary>
+            Implement ICertificatePolicy 在不檢查憑證的情況下，接受所有的SSL授權。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.TrustAllCertificatePolicy.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.TrustAllCertificatePolicy.CheckValidationResult(System.Net.ServicePoint,System.Security.Cryptography.X509Certificates.X509Certificate,System.Net.WebRequest,System.Int32)">
+            <summary>
+            驗證伺服器憑證。
+            </summary>
+            <param name="srvPoint">要使用憑證的 ServicePoint。</param>
+            <param name="certificate">做驗證的憑證。</param>
+            <param name="request">接收憑證的要求。</param>
+            <param name="certificateProblem">使用憑證時所遇到的問題。</param>
+            <returns></returns>
+        </member>
+        <member name="T:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef">
+            <summary>
+            ERP Agent Web Service 參考。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.ErpAgentWSUrl">
+            <summary> 
+            ERP Agent Web Service Url。 
+            </summary> 
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.ErpAgentPrivateKey">
+            <summary> 
+            ERP Agent 客戶端 Private Key。 
+            </summary> 
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.#ctor">
+            <summary>
+            初始化 Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.CheckValidationResult(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="certificate"></param>
+            <param name="chain"></param>
+            <param name="errors"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.Instance">
+            <summary>
+            取得參考實例。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.GetCustomersInfo(System.Nullable{System.DateTime})">
+            <summary>
+            取得 ERP 客戶資訊。
+            </summary>
+            <param name="afterTime">指定時間後的資料（若為 null 則表示全部）。</param> 
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.GetWarehouseInfo(System.Int32[])">
+            <summary>
+            取得 ERP 倉庫資訊。
+            </summary>
+            <param name="mktgRanges">市場範圍陣列集合（1:內銷 2:外銷; 若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.GetInventoryInfo(System.Nullable{System.DateTime})">
+            <summary>
+            取得 ERP 庫存資訊。
+            </summary>
+            <param name="afterTime">指定時間後的資料（若為 null 則表示全部）。</param> 
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.GetOnHandInfo(System.Int64[],System.String[],System.String)">
+            <summary>
+            取得 ERP 在手量資訊。
+            </summary>
+            <param name="inventoryItemIds">料號 ID 陣列集合（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+            <param name="items">料號陣列集合（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+            <param name="whse">倉庫。</param>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.GetPriceBookInfo(System.Nullable{System.Int64},System.Int64[],System.String[])">
+            <summary>
+            取得 ERP 價目表資訊。
+            </summary>
+            <param name="priceListId">價目表 ID（若為 null 則表示全部）。</param> 
+            <param name="inventoryItemIds">料號 ID 陣列集合（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+            <param name="items">料號陣列集合（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.GetCurrencyBookInfo(System.Nullable{System.Int64},System.String)">
+            <summary>
+            取得 ERP 幣別表資訊。
+            </summary>
+            <param name="priceListId">價目表 ID（若為 null 則表示全部）。</param> 
+            <param name="currenctCode">幣別（若為 null 或 empty 則略過條件檢查）。</param>
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.GetDiscountsInfo(System.Nullable{System.DateTime})">
+            <summary>
+            取得 ERP 折扣資訊。
+            </summary>
+            <param name="afterTime">指定時間後的資料（若為 null 則表示全部）。</param> 
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.UploadErp(Seec.Marketing.ErpBaseHelper.ErpUploader)">
+            <summary>
+            上傳 ERP。
+            </summary>
+            <param name="uploadInfo">上傳資訊。</param> 
+        </member>
+        <member name="M:Seec.Marketing.NetTalk.WebService.Client.ErpAgentRef.GetErpOrderInfo(System.Int64[],System.String[],System.Int32[])">
+            <summary>
+            取得 ERP 訂單資訊。
+            </summary>
+            <param name="headerIds">ERP 訂單 ID（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+            <param name="originalSystemReferences">XS 營銷訂單號碼（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+            <param name="orderNumbers">ERP 訂單號碼（若為 null 或陣列長度等於 0 則略過條件檢查）。</param>
+        </member>
+    </members>
+</doc>

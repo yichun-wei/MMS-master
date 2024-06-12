@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <Summary>系統管理介面選單成員。</Summary>
+  <Attrs>
+    <Attr Name="Name">選單名稱（必要）。</Attr>
+    <Attr Name="ToolTip">選單項目的提示文字（選擇）。若未輸入預設同選單名稱。</Attr>
+    <Attr Name="NavigateUrl">巡覽網址（選擇）。</Attr>
+    <Attr Name="AuthCode">
+      需要的權限（選擇）。
+      選單需要的權限皆為「查詢/瀏覽」。
+    </Attr>
+    <Attr Name="Visible">布林值，預設為 true，表示是否要呈現在選單上（選擇）。</Attr>
+  </Attrs>
+  <Items>
+    <Item Name="內銷訂單" NavigateUrl="dom/order/index.aspx" AuthCode="DOM_ORDER" />
+    <Item Name="內銷備貨單" NavigateUrl="dom/pg_order/index.aspx" AuthCode="DOM_PG_ORDER" />
+    <Item Name="外銷報價單" NavigateUrl="ext/quotn/index.aspx" AuthCode="EXT_QUOTN" />
+    <Item Name="外銷訂單" NavigateUrl="ext/order/index.aspx" AuthCode="EXT_ORDER" />
+    <Item Name="外銷生產單" NavigateUrl="ext/prod_order/index.aspx" AuthCode="EXT_PROD_ORDER" />
+    <Item Name="內銷出貨單" NavigateUrl="dom/order/shipping/index.aspx" AuthCode="DOM_SHIPPING_ORDER" />
+    <Item Name="外銷出貨單" NavigateUrl="ext/shipping_order/index.aspx" AuthCode="EXT_SHIPPING_ORDER" />
+    <Item Name="後端管理">
+      <Item Name="權限" NavigateUrl="sys_user/index.aspx" AuthCode="SYS_USER" />
+      <Item Name="內銷地區" NavigateUrl="dom/dist/index.aspx" AuthCode="DOM_DIST" />
+      <Item Name="內銷貨運方式" NavigateUrl="dom/freight_way/index.aspx" AuthCode="DOM_FREIGHT_WAY" />
+      <Item Name="外銷商品產品別" NavigateUrl="ext_item/Item_Type/View.aspx" AuthCode="EXT_ITEM_TYPE" />
+      <Item Name="外銷商品料號" NavigateUrl="ext_item/Items/View.aspx" AuthCode="EXT_ITEMS" />
+      <Item Name="外銷貨運方式" NavigateUrl="ext/freight_way/index.aspx" AuthCode="EXT_FREIGHT_WAY" />
+    </Item>
+    <Item Name="修改密碼" NavigateUrl="sys_user/chg_pwd.aspx" />
+    <Item Name="報表查詢" >
+      <Item Name="內銷報表查詢" NavigateUrl="report/index.aspx" AuthCode="XS_REPORT" />
+      <Item Name="CRM專案查詢" NavigateUrl="project/index.aspx" AuthCode="PROJ_QUOTE" />
+    </Item>
+  </Items>
+</Menu>

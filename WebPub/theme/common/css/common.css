@@ -1,0 +1,86 @@
+﻿.page_message_table
+{
+    border: 1px dashed;
+    border-color: red;
+}
+.page_message
+{
+    font-size: 100%;
+    color: red;
+}
+.disabled_ime_mode
+{
+    ime-mode: disabled;
+}
+.display_none
+{
+    left: -1000px;
+    width: 0px;
+    position: absolute;
+    top: -1000px;
+    height: 0px;
+    display: none;
+}
+.headfix
+{
+    background-color: #add8e6;
+}
+.headfix_mouseover
+{
+    background-color: #e0eeee;
+}
+.rowmouseover
+{
+    background-color: #fff1bb;
+}
+.row_singular
+{
+    background-color: #ffffff;
+}
+.row_even
+{
+    background-color: #ffffff;
+}
+.text_align_justify
+{
+    text-align: justify;
+    text-justify: distribute-all-lines;
+    text-align-last: justify;
+}
+.modal_popup_background
+{
+    border: 1px solid #2f4f4f;
+    color: White;
+    background-color: #000000;
+    font-weight: bold;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+.button_cursor
+{
+    cursor: pointer;
+}
+
+.txt_number
+{
+    text-align: right;
+}
+.txt_watermark
+{
+    color: #ccc;
+}
+
+.txt_changed
+{
+    background-color: Yellow;
+}
+
+input[disabled]
+{
+	border: 1px solid #cccccc;
+	background-color: #f0f0f0;
+	color: #cccccc;
+}
+
+.btn_refresh {width:25px; height:25px; background:url(../images/refresh.jpg) no-repeat; background-position:0px 0px; display:inline-block; margin-left:5px;}
+.btn_refresh:hover {background:url(../images/refresh.jpg) no-repeat; background-position:0px -25px;}

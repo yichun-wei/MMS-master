@@ -1,0 +1,21 @@
+﻿
+/* 頁碼 */
+#dev_pages { font-size:92.3%; padding:20px 0; clear:both; text-align:center; }
+	/* 三欄時的排列 */
+	div.three_col #dev_pages { font-size:12px; }
+#pages div { display:inline-block; }
+#dev_pages a {
+	display:inline-block; padding:3px; margin-right:2px; min-height:14px; min-width:14px; 
+	border:1px solid #fff; text-decoration:none; line-height:116.67%; text-align:center; color:#6a6a6a;
+	}
+	#dev_pages a.arrow { background:url("../images/icon_pages_arrow.png") no-repeat; }
+		#dev_pages a.first { background-position:0 5px; padding-left:12px; }
+		#dev_pages a.prev { background-position:0 -25px; padding-left:10px; }
+		#dev_pages a.next { background-position:right -56px; padding-right:10px; }
+		#dev_pages a.last { background-position:right -86px; padding-right:12px; }
+		#dev_pages a.arrow:hover { background-color:transparent; border:1px solid #fff; text-decoration:underline; }
+	#dev_pages a:hover { background-color:#fff290; }
+	#dev_pages a.focuz { color:#e6002d; font-weight:bold; }
+	#dev_pages a.focuz:hover { background-color:#FFF; border:1px solid #fff; }
+#dev_pages span input[type="text"] { width:20px; }
+#dev_pages a.dev-paging-disabled { display:none; }

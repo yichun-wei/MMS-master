@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Name：權限名稱。-->
+<!--AuthCode：權限代碼。-->
+<!--Opers：可用的操作。檢視(V)、維護(M)、刪除(D)、批次作業(B)-->
+<AuthTable>
+  <Items>
+    <Item Name="內銷訂單" AuthCode="DOM_ORDER" Opers="VMD" />
+    <Item Name="內銷備貨單" AuthCode="DOM_PG_ORDER" Opers="VMD" />
+    <Item Name="外銷報價單" AuthCode="EXT_QUOTN" Opers="VMD" />
+    <Item Name="外銷訂單" AuthCode="EXT_ORDER" Opers="VMD" />
+    <Item Name="外銷生產單" AuthCode="EXT_PROD_ORDER" Opers="VMD" />
+    <Item Name="內銷出貨單" AuthCode="DOM_SHIPPING_ORDER" Opers="VMD" />
+    <Item Name="外銷出貨單" AuthCode="EXT_SHIPPING_ORDER" Opers="VMD" />
+    <Item Name="權限" AuthCode="SYS_USER" Opers="VMD" />
+    <Item Name="內銷地區" AuthCode="DOM_DIST" Opers="VMD" />
+    <Item Name="內銷貨運方式" AuthCode="DOM_FREIGHT_WAY" Opers="VMD" />
+    <Item Name="外銷貨運方式" AuthCode="EXT_FREIGHT_WAY" Opers="VMD" />
+    <Item Name="外銷商品產品別" AuthCode="EXT_ITEM_TYPE" Opers="VMD" />
+    <Item Name="外銷商品料號" AuthCode="EXT_ITEMS" Opers="VMD" />
+    <Item Name="內銷報表查詢" AuthCode="XS_REPORT" Opers="V" />
+    <Item Name="外銷報表查詢" AuthCode="BSE_REPORT" Opers="V" />
+    <Item Name="CRM專案查詢" AuthCode="PROJ_QUOTE" Opers="V" />
+   
+  </Items>
+</AuthTable>
+

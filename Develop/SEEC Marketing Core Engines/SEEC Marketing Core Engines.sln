@@ -1,0 +1,98 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common Library", "Common Library\Common Library.csproj", "{BD4A5C8E-0112-41C0-B819-F36337C3943A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP Agent System Controller", "ERP Agent System Controller\ERP Agent System Controller.csproj", "{EC4CAC70-F45D-4C46-AED8-4F72BB3AA9E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System Controller", "System Controller\System Controller.csproj", "{64B03285-CA08-4297-B71A-1949ADC9A52C}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebPub", "http://localhost:8551", "{42569EAC-D810-4CD4-91B3-7E7F25F7DBC1}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		ProjectReferences = "{bd4a5c8e-0112-41c0-b819-f36337c3943a}|comlib.dll;{64b03285-ca08-4297-b71a-1949adc9a52c}|sysctrl.dll;{5b495185-d6bb-4b26-a4f3-d47a99406f8f}|ERPAgentCaller.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_8551"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\WebPub\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8551\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_8551"
+		Release.AspNetCompiler.PhysicalPath = "..\..\WebPub\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8551\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\..\WebPub\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebPub_ERPAgent", "http://localhost:8550", "{F936B1E9-7496-4C6F-A2B2-5C3FD65E9D93}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		ProjectReferences = "{bd4a5c8e-0112-41c0-b819-f36337c3943a}|comlib.dll;{ec4cac70-f45d-4c46-aed8-4f72bb3aa9e5}|erpagentsysctrl.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_8550"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\WebPub_ERPAgent\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8550\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_8550"
+		Release.AspNetCompiler.PhysicalPath = "..\..\WebPub_ERPAgent\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8550\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\..\WebPub_ERPAgent\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP Agent Caller", "ERP Agent Caller\ERP Agent Caller.csproj", "{5B495185-D6BB-4B26-A4F3-D47A99406F8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEEC Mktg Detector", "..\..\Application\SEEC Mktg Detector\SEEC Mktg Detector.csproj", "{C94185B2-D79E-4D32-8F45-843AC5BB6DC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD4A5C8E-0112-41C0-B819-F36337C3943A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4A5C8E-0112-41C0-B819-F36337C3943A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4A5C8E-0112-41C0-B819-F36337C3943A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4A5C8E-0112-41C0-B819-F36337C3943A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC4CAC70-F45D-4C46-AED8-4F72BB3AA9E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4CAC70-F45D-4C46-AED8-4F72BB3AA9E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4CAC70-F45D-4C46-AED8-4F72BB3AA9E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4CAC70-F45D-4C46-AED8-4F72BB3AA9E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64B03285-CA08-4297-B71A-1949ADC9A52C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64B03285-CA08-4297-B71A-1949ADC9A52C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64B03285-CA08-4297-B71A-1949ADC9A52C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64B03285-CA08-4297-B71A-1949ADC9A52C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42569EAC-D810-4CD4-91B3-7E7F25F7DBC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42569EAC-D810-4CD4-91B3-7E7F25F7DBC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42569EAC-D810-4CD4-91B3-7E7F25F7DBC1}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{42569EAC-D810-4CD4-91B3-7E7F25F7DBC1}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{F936B1E9-7496-4C6F-A2B2-5C3FD65E9D93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F936B1E9-7496-4C6F-A2B2-5C3FD65E9D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F936B1E9-7496-4C6F-A2B2-5C3FD65E9D93}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{F936B1E9-7496-4C6F-A2B2-5C3FD65E9D93}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5B495185-D6BB-4B26-A4F3-D47A99406F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B495185-D6BB-4B26-A4F3-D47A99406F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B495185-D6BB-4B26-A4F3-D47A99406F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B495185-D6BB-4B26-A4F3-D47A99406F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C94185B2-D79E-4D32-8F45-843AC5BB6DC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C94185B2-D79E-4D32-8F45-843AC5BB6DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C94185B2-D79E-4D32-8F45-843AC5BB6DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C94185B2-D79E-4D32-8F45-843AC5BB6DC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

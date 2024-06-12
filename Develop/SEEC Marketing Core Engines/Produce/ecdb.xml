@@ -1,0 +1,3441 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ecdb</name>
+    </assembly>
+    <members>
+        <member name="T:EzCoding.DB.SqlOrder">
+            <summary>
+            SQL 排序（Order By）的組合類別。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlOrder.#ctor">
+            <summary>
+            初始化 EzCoding.DB.SqlOrder 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlOrder.#ctor(System.Boolean)">
+            <summary>
+            初始化 EzCoding.DB.SqlOrder 類別的新執行個體。
+            </summary>
+            <param name="useDefault">使用預設的 SQL 排序（Order By）。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlOrder.#ctor(System.String,EzCoding.Sort)">
+            <summary>
+            初始化 EzCoding.DB.SqlOrder 類別的新執行個體。
+            </summary>
+            <param name="by">欄位名稱。</param>
+            <param name="sort">排序方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlOrder.#ctor(EzCoding.Collections.SimpleData{System.String,EzCoding.Sort}[])">
+            <summary>
+            初始化 EzCoding.DB.SqlOrder 類別的新執行個體。
+            </summary>
+            <param name="sqlOrders">含有零或多個包含欄位名稱及排序方式的 EzCoding.Collections.SimpleData 陣列。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlOrder.Add(System.String,EzCoding.Sort)">
+            <summary>
+            新增 Order By 組合。
+            </summary>
+            <param name="by">欄位名稱。</param>
+            <param name="sort">排序方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlOrder.Output(EzCoding.QuotationMarks)">
+            <summary>
+            輸出完整的 Order By 語法。
+            </summary>
+            <param name="quotationMarks">引述符號樣式類別。</param>
+            <returns>完整的 Order By 語法。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 quotationMarks不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.SqlOrder.OutputReverse(EzCoding.QuotationMarks)">
+            <summary>
+            輸出排序反向完整的 Order By 語法。
+            </summary>
+            <param name="quotationMarks">引述符號樣式類別。</param>
+            <returns>完整的 Order By 語法。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 quotationMarks不允許為 null 值。</exception>
+        </member>
+        <member name="P:EzCoding.DB.SqlOrder.Item(System.Int32)">
+            <summary>
+            依索引子取得排序方式。
+            </summary>
+            <param name="index">索引子。</param>
+            <returns>排序方式。</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">索引子不在陣列索引範圍內。</exception>
+        </member>
+        <member name="P:EzCoding.DB.SqlOrder.Default">
+            <summary>
+            預設的 SQL 排序（Order By）。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlOrder.UseDefault">
+            <summary>
+            是否使用預設的 SQL 排序（Order By）。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlOrder.Clear">
+            <summary>
+            預設不使用的 SQL 排序（Order By）。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlOrder.UseClear">
+            <summary>
+            是否不使用 SQL 排序（Order By）。
+            此操作並不會移除既有的 SQL 排序。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlOrder.Count">
+            <summary>
+            取得實際包含的組合數。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.MSSqlClient.MSSqlConnector">
+            <summary>
+            Microsoft SQL 連線管理員。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.DBConnector">
+            <summary>
+            連線管理員基底類別。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.IDBConnector">
+            <summary>
+            連線管理員的實作介面。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.IDBConnector.Close">
+            <summary>
+            關閉資料庫連線。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.IDBConnector.Connection">
+            <summary>
+            取得或設定資料庫連線。在取得時，若尚未建立連線，則會自動建立。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.IDBConnector.State">
+            <summary>
+            取得資料庫連線狀況。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DBConnector.#ctor(System.Data.IDbConnection)">
+            <summary>
+            初始化連線管理員 EzCoding.DB.DbConnector 類別的新執行個體。
+            </summary>
+            <param name="connection">資料庫連線物件。</param>
+        </member>
+        <member name="M:EzCoding.DB.DBConnector.GetOutsideConnectionString">
+            <summary>
+            取得外部定義的資料庫連線字串。
+            預設為讀取同目錄下的 ConnectionString.txt，若連線字串為其他外部檔案（如 WebConfig），請覆寫。
+            </summary>
+            <exception cref="T:System.IO.FileNotFoundException">找不到連線字串的檔案（ConnectionString.txt）。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DBConnector.Close">
+            <summary>
+            關閉資料庫連線。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DBConnector.Dispose">
+            <summary>
+            執行與釋放（Free）、釋放（Release）或重設 Unmanaged 資源相關聯之應用程式定義的工作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DBConnector.Dispose(System.Boolean)">
+            <summary>
+            清除任何使用中的資源。
+            </summary>
+            <param name="disposing">true 表示釋放 Managed 和 Unmanaged 資源；false 表示只釋放 Unmanaged 資源。</param>
+        </member>
+        <member name="M:EzCoding.DB.DBConnector.Finalize">
+            <summary>
+            解構 EzCoding.DataTableMaker 類別的執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DBConnector.Closing">
+            <summary>
+            關閉已開啟的資料庫連線。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DBConnector.ConnectionString">
+            <summary>
+            取得或設定資料庫連線字串。如果為 empty，則會嘗試呼叫 GetOutsideConnectionString() 方法。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DBConnector.ProviderFilePath">
+            <summary>
+            取得或設定 DB Provider 的檔案路徑（預設為讀取同目錄下的 ConnectionString.txt）。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DBConnector.Connection">
+            <summary>
+            取得或設定資料庫連線。在取得時，若尚未建立連線，則會自動建立。
+            </summary>
+            <remarks>
+            繼承 EzCoding.DB.DbConnector 時需注意！若為自動建立連線，需先覆寫 DbProvider 設定取得自訂路徑的資料庫連線字串。
+            </remarks>
+        </member>
+        <member name="P:EzCoding.DB.DBConnector.State">
+            <summary>
+            取得資料庫連線狀況。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlConnector.#ctor">
+            <summary>
+            初始化 EzCoding.DB.MsSqlClient.MsSqlConnector 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlConnector.#ctor(System.String)">
+            <summary>
+            依資料庫連線字串，初始化 EzCoding.DB.MsSqlClient.MsSqlConnector 類別的新執行個體。
+            </summary>
+            <param name="connectionString">資料庫連線字串。</param>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlConnector.#ctor(System.Data.IDbConnection)">
+            <summary>
+            依 System.Data.IDbConnection，初始化 EzCoding.DB.MsSqlClient.MsSqlConnector 類別的新執行個體。
+            </summary>
+            <param name="connection">資料庫連線物件。</param>
+        </member>
+        <member name="T:EzCoding.DB.DataHandler">
+            <summary>
+            資料庫存取操作的基底類別。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.#ctor">
+            <summary>
+            初始化 EzCoding.DB.DataHandler 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.Dispose">
+            <summary>
+            執行與釋放（Free）、釋放（Release）或重設 Unmanaged 資源相關聯之應用程式定義的工作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.Dispose(System.Boolean)">
+            <summary>
+            清除任何使用中的資源。
+            </summary>
+            <param name="disposing">true 表示釋放 Managed 和 Unmanaged 資源；false 表示只釋放 Unmanaged 資源。</param>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.Finalize">
+            <summary>
+            解構 EzCoding.DB.DataHandler 類別的執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.Init(EzCoding.DB.DataAccess,System.String)">
+            <summary>
+            初始化資料庫存取物件。
+            </summary>
+            <param name="dataAccess">取得設定資料庫存取執行物件。</param>
+            <param name="entityName">資料實體名稱。</param>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.Init(EzCoding.DB.DataAccess,System.String,System.String[],System.String[],System.String[],System.String[])">
+            <summary>
+            初始化資料庫存取物件。
+            </summary>
+            <param name="dataAccess">取得設定資料庫存取執行物件。</param>
+            <param name="entityName">資料實體名稱。</param>
+            <param name="openupInsertColumns">開放新增的欄位陣列。若為 null 或陣列長度為 0，則表示不限制。</param>
+            <param name="openupUpdatedColumns">開放修改的欄位陣列。若為 null 或陣列長度為 0，則表示不限制。</param>
+            <param name="openupInquiredColumns">開放查詢的欄位陣列。若陣列長度為 0，則視為 SQL 語法中的「*」。</param>
+            <param name="openupConditionColumns">開放使用的條件欄位陣列。若為 null 或陣列長度為 0，則表示不限制。</param>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetDataEntity">
+            <summary>
+            取得使用的資料實體。
+            </summary>
+            <returns>資料實體。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetDataEntityViewName">
+            <summary>
+            取得資料實體的檢視名稱。
+            </summary>
+            <returns>實體的檢視名稱。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.IsContainValues(System.String[],System.String[])">
+            <summary>
+            比對參數欄位字串陣列中的值是否包含在指定的資料庫欄位字串陣列中。
+            </summary>
+            <param name="tableColumns">指定的資料庫欄位字串陣列。</param>
+            <param name="argColumns">參數欄位字串陣列。</param>
+            <returns>參數欄位字串陣列是否包含在指定資料庫欄位字串陣列中。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.IsContainValues(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            比對參數欄位字串陣列中的值是否包含在開放使用的條件欄位陣列中。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>參數欄位字串陣列是否包含在指定資料庫欄位字串陣列中。</returns>
+            <exception cref="T:System.ArgumentNullException">conditions 為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.InquireColumns(System.String[])">
+            <summary>
+            指定查詢時所要使用的欄位。
+            </summary>
+            <param name="columns">含有零或多個欄位名稱的 System.String 陣列。若陣列為零，則使用預設開放的欄位名稱。</param>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ToInquireString">
+            <summary>
+            將查詢欄位轉換為加上引述符號的字串。
+            </summary>
+            <returns>加上引述符號的查詢字串。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ToInquireString(System.String[])">
+            <summary>
+            將查詢欄位轉換為加上引述符號的字串。
+            </summary>
+            <param name="inquireColumns">資料表的查詢欄位陣列。</param>
+            <returns>加上引述符號的查詢字串。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ToSumString(System.String[])">
+            <summary>
+            將指定查詢加總的欄位轉換為加上引述符號的字串。
+            </summary>
+            <param name="columnsName">要加總的欄位名稱陣列。</param>
+            <returns>加上引述符號的「SUM」子句字串。</returns>
+            <exception cref="T:System.ArgumentNullException">columnsName 為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ToWhereString(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            將欄位字串陣列轉換成 SQL 語法的 Where 子句。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>WHERE 子句。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 quotationMarks 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ToInsertString(System.String[],System.Data.DataRow)">
+            <summary>
+            將欄位字串陣列轉換成 SQL 語法的 Insert 子句。
+            </summary>
+            <param name="columns">欄位字串陣列。</param>
+            <param name="row">資料列。</param>
+            <returns>Insert 子句。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ToInsertString(EzCoding.DB.TransColValSet)">
+            <summary>
+            將欄位字串陣列轉換成 SQL 語法的 Insert 子句。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>Insert 子句。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ToUpdateString(System.String[],System.Data.DataRow)">
+            <summary>
+            將欄位字串陣列轉換成 SQL 語法的 Update Set 子句。
+            </summary>
+            <param name="columns">欄位字串陣列。</param>
+            <param name="row">資料列。</param>
+            <returns>Set 子句。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 quotationMarks 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ToUpdateString(EzCoding.DB.TransColValSet)">
+            <summary>
+            將欄位字串陣列轉換成 SQL 語法的 Update Set 子句。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>Set 子句。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.AddParameters(System.String[],System.Data.DataRow,EzCoding.DB.SqlSyntax)">
+            <summary>
+            依資料列欄位名稱和資料列，逐一將 SQL Parameters 加入 EzCoding.DB.SqlSyntax 物件。
+            </summary>
+            <param name="columns">資料列欄位名稱。</param>
+            <param name="row">資料列。</param>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax。</param>
+            <returns>EzCoding.DB.SqlSyntax。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 row 和 sqlSyntax 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.AddParameters(EzCoding.DB.TransColValSet,EzCoding.DB.SqlSyntax)">
+            <summary>
+            依資料列欄位名稱和資料列，逐一將 SQL Parameters 加入 EzCoding.DB.SqlSyntax 物件。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax。</param>
+            <returns>EzCoding.DB.SqlSyntax。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 row 和 sqlSyntax 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.AddParameters(EzCoding.DB.SqlCondsSet,EzCoding.DB.SqlSyntax)">
+            <summary>
+            依 SQL 欄位運算的運算組合類別，逐一將 SQL Parameters 加入 EzCoding.DB.SqlSyntax 物件。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax。</param>
+            <exception cref="T:System.ArgumentNullException">參數 conditions 和 sqlSyntax 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ViewSqlStatement(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            檢視 SQL 語法與參數。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <returns>SQL 語法與參數。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.ViewSqlStatement(EzCoding.DB.SqlSyntax)">
+            <summary>
+            檢視 SQL 語法與參數。
+            </summary>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax。</param>
+            <returns>SQL 語法與參數。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.Add(System.Data.DataSet)">
+            <summary>
+            新增一筆資料列。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.AddBuffer(System.Data.DataSet)">
+            <summary>
+            新增一筆資料列緩衝。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.Add(EzCoding.DB.TransColValSet)">
+            <summary>
+            新增一筆資料列。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.AddBuffer(EzCoding.DB.TransColValSet)">
+            <summary>
+            新增一筆資料列緩衝。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.UpdateBy(System.Data.DataSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            dSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.UpdateBuffer(System.Data.DataSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容資料列緩衝。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            dSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.UpdateBy(EzCoding.DB.TransColValSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            transSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.UpdateBuffer(EzCoding.DB.TransColValSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容資料列緩衝。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            transSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.UpdateColumnSelfOperationBy(System.String,EzCoding.MathOperator,System.Object,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改指定欄位運算後的內容。
+            </summary>
+            <param name="columnName">異動的欄位名稱。</param>
+            <param name="mathOperator">數學中使用的運算符號列舉。</param>
+            <param name="operationValue">運算值。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 columnName、operationValue 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.UpdateColumnSelfOperationByBuffer(System.String,EzCoding.MathOperator,System.Object,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改指定欄位運算後的內容資料列緩衝。
+            </summary>
+            <param name="columnName">異動的欄位名稱。</param>
+            <param name="mathOperator">數學中使用的運算符號列舉。</param>
+            <param name="operationValue">運算值。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 columnName、operationValue 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.DeleteBy(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值刪除一筆資料。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">conditions 為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.DeleteBuffer(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值刪除一筆資料資料列緩衝。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">conditions 為 null 值。</exception>
+            <exception cref="T:EzCoding.LibraryException">當資料表被設定為不允許刪除時，執行了刪除的操作。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetInfoBy(System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得資料列。
+            </summary>
+            <param name="size">指定的前 N 筆資料（若為 Int32.MaxValue 則表示為全部）。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetInfoBuffer(System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得資料列緩衝。
+            </summary>
+            <param name="size">指定的前 N 筆資料（若為 Int32.MaxValue 則表示為全部）。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetCountBy(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得資料列筆數。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetCountBuffer(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得資料列筆數緩衝。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">conditions 為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetSumBy(System.String[],EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得欄位加總。
+            </summary>
+            <param name="columnsName">要加總的欄位名稱陣列。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetSumBuffer(System.String[],EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得欄位加總緩衝。
+            </summary>
+            <param name="columnsName">要加總的欄位名稱陣列。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            conditions 為 null 值。
+            columnsName 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetPagingBy(System.Int32,System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetPagingBuffer(System.Int32,System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetPagingBy(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetPagingBuffer(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetRandomBy(System.Int32,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得隨機的資料列。
+            </summary>
+            <param name="size">筆數。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetRandomBuffer(System.Int32,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得隨機的資料列緩衝。
+            </summary>
+            <param name="size">筆數。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetGroupBy(EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「COUNT」欄位計算總數。
+            </summary>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetGroupBuffer(EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「COUNT」欄位計算總數資料列緩衝。
+            </summary>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            sqlGroup 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetGroupPagingBy(System.Int32,System.Int32,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「COUNT」欄位計算總數。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetGroupPagingBuffer(System.Int32,System.Int32,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetGroupPagingBy(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「COUNT」欄位計算總數。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetGroupPagingBuffer(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetGroupCountBy(EzCoding.DB.SqlGroup,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的 Group By 及鍵值取得資料列筆數。
+            </summary>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataHandler.GetGroupCountBuffer(EzCoding.DB.SqlGroup,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的 Group By 及鍵值取得資料列筆數緩衝。
+            </summary>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            sqlGroup 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="P:EzCoding.DB.DataHandler.DataAccess">
+            <summary>
+            資料庫存取執行物件。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DataHandler.EntityName">
+            <summary>
+            資料實體名稱。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DataHandler.SqlSymbol">
+            <summary>
+            參數符號。用於資料庫欄位參數的變數使用。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DataHandler.QuotationMarks">
+            <summary>
+            引述符號樣式類別。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DataHandler.FullOpenUpConditionColumns">
+            <summary>
+            完全開放資料表中所有欄位的 WHERE 條件式使用。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DataHandler.AllowDelete">
+            <summary>
+            是否允許刪除的操作。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DataHandler.EnableCustomEntity">
+            <summary>
+            是否啟用自訂資料實體。
+            若為 true，則會使用 CustomEntitySqlSyntax 取代 EntityName 做為資料實體。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DataHandler.CustomEntityPreSqlSyntax">
+            <summary>
+            自訂資料實體的前置 SQL 語法。
+            當 EnableCustomEntity 為 true 時，將在查詢操作時，置於自訂資料實體之前。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DataHandler.CustomEntitySqlSyntax">
+            <summary>
+            自訂資料實體的 SQL 語法。
+            當 EnableCustomEntity 為 true 時，將在查詢操作時，取代 EntityName 做為資料實體。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlUtilBox">
+            <summary>
+            SQL 語法工具箱。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlUtilBox.ToSqlConds(System.String[],System.String,System.String)">
+            <summary>
+            轉換為 SQL 條件語句。
+            </summary>
+            <param name="conds">SQL 條件集合。所有條件將以「AND」組合。</param>
+            <param name="withPrevSyntax">查詢語法結果前面要附加的語法。</param>
+            <param name="withFollowingSyntax">查詢語法結果後面接著要附加的語法。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlUtilBox.GetFTSearchCollection(System.String[],System.String)">
+            <summary>
+            取得全文檢索查詢集合。
+            </summary>
+            <param name="cols">全文檢索欄位陣列集合。</param>
+            <param name="ftKeyword">全文檢索關鍵字。</param>
+            <returns>全文檢索查詢集合。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlUtilBox.AddFTSearchConditions(EzCoding.Collections.SimpleDataSet{System.String,System.Object},System.String)">
+            <summary>
+            加入全文檢索查詢條件。
+            </summary>
+            <param name="conditions">包含欄位名稱和值的全文檢索查詢條件。</param>
+            <param name="compoundSearchSeparator">複合查詢分隔字串。</param>
+            <returns>EzCoding.DB.SqlCondsSet。</returns>
+        </member>
+        <member name="T:EzCoding.DB.IBetweenOperation">
+            <summary>
+            定義 SqlCondsSet 或 SqlCond 之間的運算式的實作介面。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.IBetweenOperation.BetweenOperation">
+            <summary>
+            與下一個 SqlCondsSet 或 SqlCond 之間的運算式。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlCondsSet">
+            <summary>
+            SQL 欄位運算組合的運算類別。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.#ctor">
+            <summary>
+            初始化 EzCoding.DB.SqlCondsSet 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.#ctor(System.Int32)">
+            <summary>
+            依新清單一開始能夠儲存的元素數目和兩組欄位運算式組合間的運算方式，初始化 EzCoding.DB.SqlCondsSet 類別的新執行個體。
+            </summary>
+            <param name="capacity">新清單一開始能夠儲存的元素數目。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.#ctor(EzCoding.DB.SqlCond[])">
+            <summary>
+            依指定的 EzCoding.DB.SqlCond，初始化 EzCoding.DB.SqlCondsSet 類別的新執行個體。
+            </summary>
+            <param name="conds">含有零或多個SQL欄位運算類別陣列。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(System.String,System.String,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            欄位名稱後緊接著 T-SQL 運算關鍵字。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            依完整的比較運算式（[欄位名稱] [運算式] [參數值]），初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="fieldValue">欄位參數的實際值。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(System.String,System.String,EzCoding.DB.GenericDBType,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            欄位名稱後緊接著 T-SQL 運算關鍵字。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(EzCoding.LeftRightPair{System.String,System.String},System.String,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            欄位與欄位之間的比較。
+            </summary>
+            <param name="pairFieldName">EzCoding.LeftRightPair&lt;string,string&gt;。分別代表要比較的兩個欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(System.String,System.Boolean,System.Object[],System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            依 T-SQL 查詢語法「IN」或「NOT IN」比較。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="equalTo">是否等於 T-SQL 查詢結果。</param>
+            <param name="fieldValues">欄位值陣列集合。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(System.String,System.Boolean,System.Object[],EzCoding.DB.GenericDBType,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            依 T-SQL 查詢語法「IN」或「NOT IN」比較。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="equalTo">是否等於 T-SQL 查詢結果。</param>
+            <param name="fieldValues">欄位值陣列集合。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(System.String,System.String,System.Object,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            依完整的比較運算式（[欄位名稱] [運算式] [參數值]），初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="fieldValue">欄位參數的實際值。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(System.String,System.String,System.Object,EzCoding.DB.GenericDBType,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            依完整的比較運算式（[欄位名稱] [運算式] [參數值]），初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="fieldValue">欄位參數的實際值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(EzCoding.DB.SqlCondType,System.String,System.String,System.Object,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            依完整的比較運算式（[欄位名稱] [運算式] [參數值]），初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="operationType">運算類型。</param>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="fieldValue">欄位參數的實際值。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(EzCoding.DB.SqlCondType,System.String,System.String,System.Object,EzCoding.DB.GenericDBType,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            依完整的比較運算式（[欄位名稱] [運算式] [參數值]），初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="operationType">運算類型。</param>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="fieldValue">欄位參數的實際值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(EzCoding.DB.SqlCond)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            </summary>
+            <param name="cond">SQL欄位運算類別。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(EzCoding.DB.SqlCond,System.String)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            </summary>
+            <param name="cond">SQL欄位運算類別。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <exception cref="T:System.ArgumentNullException">參數 cond 不允許為 null 值。</exception>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            新增 EzCoding.DB.SqlCond 物件。
+            </summary>
+            <param name="conditions">SQL欄位運算組合的運算類別。</param>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Add(EzCoding.DB.SqlCondsSet,System.String)">
+            <summary>
+            新增 SqlCondsSet 物件。
+            </summary>
+            <param name="conditions">SQL欄位運算組合的運算類別。</param>
+            <param name="betweenOperation">與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。</param>
+            <exception cref="T:System.ArgumentNullException">conditions 為 null 值。</exception>
+            <returns>EzCoding.DB.SqlCondsSet（目前執行個體）。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Contains(System.String)">
+            <summary>
+            檢查集合是否包含具有指定的欄位名稱。
+            </summary>
+            <param name="name">要檢查的欄位名稱。</param>
+            <returns>是否已包含。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.GetConds(System.String)">
+            <summary>
+            取得指定名稱的 SqlCond 物件陣列。
+            </summary>
+            <param name="name">欄位名稱。</param>
+            <returns>SqlCond 物件陣列。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.GetAllContainParamsConds">
+            <summary>
+            取得包含自己和子系的所有 SqlCond。
+            只有包含欄位參數的 SqlCond 才會被加入 SqlCond[]中。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.OutputPreoperate(System.String,EzCoding.QuotationMarks)">
+            <summary>
+            輸出欄位運算式的前置作業。
+            </summary>
+            <param name="symbol">參數名稱的符號。</param>
+            <param name="quotationMarks">引述符號樣式類別。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCondsSet.Output(System.String,EzCoding.QuotationMarks)">
+            <summary>
+            輸出欄位運算式。
+            </summary>
+            <param name="symbol">參數名稱的符號。</param>
+            <param name="quotationMarks">引述符號樣式類別。</param>
+            <returns>欄位運算式</returns>
+        </member>
+        <member name="P:EzCoding.DB.SqlCondsSet.Item(System.Int32)">
+            <summary>
+            SQL 欄位運算類別。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCondsSet.Tag">
+            <summary>
+            取得或設定物件，其中包含和本類別相關的資料。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCondsSet.And">
+            <summary>
+            And 運算式。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCondsSet.Or">
+            <summary>
+            Or 運算式。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCondsSet.Count">
+            <summary>
+            取得實際包含的欄位運算組合數。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCondsSet.BetweenOperation">
+            <summary>
+            與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlCondType">
+            <summary>
+            SQL 欄位運算類型。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlCondType.FieldNameAndValueCompare">
+            <summary>
+            完整的比較運算式（[欄位名稱] [運算式] [參數值]）。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlCondType.FieldAndFieldCompare">
+            <summary>
+            欄位與欄位之間的比較。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlCondType.FieldAndTSqlOperation">
+            <summary>
+            欄位名稱後緊接著 T-SQL 運算關鍵字。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlCondType.TSqlInquireSyntaxInOrNotIn">
+            <summary>
+            T-SQL 查詢語法「IN」或「NOT IN」比較。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlCondType.MSSqlFullTextSearch">
+            <summary>
+            適用於 Microsoft SQL Server 的全文檢索條件。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlCond">
+            <summary>
+            SQL 欄位運算類別。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor">
+            <summary>
+            初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor(System.String,System.String,System.String)">
+            <summary>
+            依欄位名稱後緊接著 T-SQL 運算關鍵字，初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            依完整的比較運算式（[欄位名稱] [運算式] [參數值]），初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="fieldValue">欄位參數的實際值。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor(System.String,System.String,EzCoding.DB.GenericDBType,System.String)">
+            <summary>
+            依欄位名稱後緊接著 T-SQL 運算關鍵字，初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor(EzCoding.LeftRightPair{System.String,System.String},System.String,System.String)">
+            <summary>
+            依欄位與欄位之間的比較，初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="pairFieldName">EzCoding.LeftRightPair&lt;string,string&gt;。分別代表要比較的兩個欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor(System.String,System.Boolean,System.Object[],System.String)">
+            <summary>
+            依 T-SQL 查詢語法「IN」或「NOT IN」比較，初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="equalTo">是否等於 T-SQL 查詢結果。</param>
+            <param name="fieldValues">欄位值陣列集合。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor(System.String,System.Boolean,System.Object[],EzCoding.DB.GenericDBType,System.String)">
+            <summary>
+            依 T-SQL 查詢語法「IN」或「NOT IN」比較，初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="equalTo">是否等於 T-SQL 查詢結果。</param>
+            <param name="fieldValues">欄位值陣列集合。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor(System.String,System.String,System.Object,System.String)">
+            <summary>
+            依完整的比較運算式（[欄位名稱] [運算式] [參數值]），初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="fieldValue">欄位參數的實際值。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor(System.String,System.String,System.Object,EzCoding.DB.GenericDBType,System.String)">
+            <summary>
+            依完整的比較運算式（[欄位名稱] [運算式] [參數值]），初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="fieldValue">欄位參數的實際值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.#ctor(EzCoding.DB.SqlCondType,System.String,System.String,System.Object,EzCoding.DB.GenericDBType,System.String)">
+            <summary>
+            依完整的比較運算式（[欄位名稱] [運算式] [參數值]），初始化 EzCoding.DB.SqlCond 類別的新執行個體。
+            </summary>
+            <param name="operationType">運算類型。</param>
+            <param name="fieldName">欄位名稱。</param>
+            <param name="operation">與欄位參數間的運算式。</param>
+            <param name="fieldValue">欄位參數的實際值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="betweenOperation">兩組欄位運算式組合間的運算方式。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlCond.ToOperator(EzCoding.DB.SqlOperator)">
+            <summary>
+            取得 SQL 語法中條件使用的運算字串表示。
+            </summary>
+            <param name="sqlOperator">SQL 語法中條件使用的運算列舉。</param>
+            <returns>SQL 語法中條件使用的運算字串表示。</returns>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.CondType">
+            <summary>
+            取得或設定運算類型。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.Tag">
+            <summary>
+            取得或設定物件，其中包含和本類別相關的資料。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.FieldName">
+            <summary>
+            欄位名稱。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.Operation">
+            <summary>
+            與欄位參數間的運算式。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.DBType">
+            <summary>
+            取得或設定泛用的資料庫型別列舉。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.BetweenOperation">
+            <summary>
+            與下一個 SqlCondsSet 或 SqlCond 之間的運算式（如果有的話）。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.FieldParameter">
+            <summary>
+            欄位參數。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.FieldValue">
+            <summary>
+            欄位參數的實際值。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.EqualTo">
+            <summary>
+            等於。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.InequalTo">
+            <summary>
+            不等於。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.GreaterThan">
+            <summary>
+            大於。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.LessThan">
+            <summary>
+            小於。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.GreaterEqualThan">
+            <summary>
+            大於等於。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.LessEqualThan">
+            <summary>
+            小於等於。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.LikeThan">
+            <summary>
+            糢糊比較。T-SQL 中的「LIKE」語法。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.NotLikeThan">
+            <summary>
+            糢糊比較。T-SQL 中的「NOT LIKE」語法。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.IsNull">
+            <summary>
+            T-SQL 中的「IS NULL」語法。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlCond.IsNotNull">
+            <summary>
+            T-SQL 中的「IS NOT NULL」語法。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.OracleClient.OracleDataHandler">
+            <summary>
+            Oracle 資料庫存取操作的類別實作。
+            對 Oracle 資料庫做存取時，需安裝 Oracle Client 才能運作正常。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataHandler.#ctor">
+            <summary>
+            初始化 EzCoding.DB.OracleClient.OracleDataHandler 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataHandler.GetInfoBuffer(System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得資料列緩衝。
+            </summary>
+            <param name="size">指定的前 N 筆資料（若為 Int32.MaxValue 則表示為全部）。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataHandler.GetPagingBuffer(System.Int32,System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataHandler.GetPagingBuffer(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            flipper 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataHandler.GetRandomBuffer(System.Int32,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得隨機的資料列緩衝。
+            </summary>
+            <param name="size">筆數。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            sqlOrder 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataHandler.GetGroupPagingBuffer(System.Int32,System.Int32,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            sqlGroup 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataHandler.GetGroupPagingBuffer(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            flipper 為 null 值。
+            sqlGroup 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataHandler.ToSqlStatement(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            將 EzCoding.DB.SqlSyntaxCommander 轉換為 SQL 語法。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <returns>SQL 字串。</returns>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataHandler.ToSqlStatement(EzCoding.DB.SqlSyntax)">
+            <summary>
+            將 EzCoding.DB.SqlSyntax 轉換為 SQL 語法。
+            </summary>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax。</param>
+            <returns>SQL 字串。</returns>
+        </member>
+        <member name="T:EzCoding.DB.MessageTable">
+            <summary>
+            適用於 EzCoding.DB 函式庫各種訊息表示的常數結構。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.SqlSyntaxInfo">
+            <summary>
+            執行的 SQL 指令資訊。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.ExecuteNonQueryFailed">
+            <summary>
+            異動警告。執行操作時，沒有任何資料列受影響。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.DBDataNotFound">
+            <summary>
+            資料表中找不到指定的資料。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.NotContainsConditions">
+            <summary>
+            執行操作時沒有包含條件。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.ConditionsDenied">
+            <summary>
+            執行的條件未在開放的欄位清單中。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.PagingException">
+            <summary>
+            頁數大於實際分頁數或分頁筆數設定的其他例外狀況。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.DataExistedOtherTable">
+            <summary>
+            資料已被其他Table使用中。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.UseLimitedTableColumn">
+            <summary>
+            使用被限制的資料表欄位操作。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.DeleteDenied">
+            <summary>
+            刪除被拒。此資料表操作被設定為不允許刪除操作。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.DBException">
+            <summary>
+            資料庫執行例外。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.MessageTable.DBOtherException">
+            <summary>
+            其他不在預期內的錯誤原因。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlOperator">
+            <summary>
+            SQL 語法中條件使用的運算列舉。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.EqualTo">
+            <summary>
+            等於。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.InequalTo">
+            <summary>
+            不等於。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.GreaterThan">
+            <summary>
+            大於。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.LessThan">
+            <summary>
+            小於。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.GreaterEqualThan">
+            <summary>
+            大於等於。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.LessEqualThan">
+            <summary>
+            小於等於。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.LikeThan">
+            <summary>
+            糢糊比較。T-SQL 中的「LIKE」語法。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.NotLikeThan">
+            <summary>
+            糢糊比較。T-SQL 中的「NOT LIKE」語法。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.IsNull">
+            <summary>
+            T-SQL 中的「IS NULL」語法。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlOperator.IsNotNull">
+            <summary>
+            T-SQL 中的「IS NOT NULL」語法。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlLikeOperator">
+            <summary>
+            T-SQL 語法中的 LIKE 運算式。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlLikeOperator.Like">
+            <summary>
+            T-SQL 中的「LIKE」語法。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlLikeOperator.NotLike">
+            <summary>
+            T-SQL 中的「NOT LIKE」語法。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlLikeMode">
+            <summary>
+            T-SQL 語法中的 LIKE 查詢模式。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlLikeMode.Absolute">
+            <summary>
+            絕對查詢（關鍵字和欄位值必須完全符合）。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlLikeMode.Relative">
+            <summary>
+            相對（模糊）查詢（e.g.,「%keyword%」）。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlLikeMode.RelativeLeft">
+            <summary>
+            相對於關鍵字左邊的相對（模糊）比較（e.g.,「%keyword」）。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.SqlLikeMode.RelativeRight">
+            <summary>
+            相對於關鍵字右邊的相對（模糊）比較（e.g.,「keyword%」）。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlSyntaxReturner">
+            <summary>
+            操作 SQL 語法物件（EzCoding.DB.SqlSyntax）時的回傳物件。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxReturner.#ctor">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntaxReturner 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxReturner.SqlSyntax">
+            <summary>
+            取得或設定 EzCoding.DB.SqlSyntax 執行個體。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.OracleClient.OracleDataAccess">
+            <summary>
+            Oracle 資料庫存取執行的類別實作。
+            對 Oracle 資料庫做存取時，需安裝 Oracle Client 才能運作正常。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.DataAccess">
+            <summary>
+            資料庫存取操作的基底類別。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.#ctor">
+            <summary>
+            初始化 EzCoding.DB.DataAccess 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.Dispose">
+            <summary>
+            執行與釋放（Free）、釋放（Release）或重設 Unmanaged 資源相關聯之應用程式定義的工作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.Dispose(System.Boolean)">
+            <summary>
+            清除任何使用中的資源。
+            </summary>
+            <param name="disposing">true 表示釋放 Managed 和 Unmanaged 資源；false 表示只釋放 Unmanaged 資源。</param>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.Finalize">
+            <summary>
+            解構 EzCoding.DB.DataAccess 類別的執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.CreateConnection">
+            <summary>
+            建立資料庫連線。
+            </summary>
+            <returns>資料庫連線的實作介面。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.ExecuteTransaction(EzCoding.DB.SqlSyntaxCommander,System.Boolean)">
+            <summary>
+            執行交易異動操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.UnsafeExecuteTransaction(System.String,System.Boolean)">
+            <summary>
+            不驗證安全性的執行交易異動操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.ExecuteInquire(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            執行查詢操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.UnsafeExecuteInquire(System.String)">
+            <summary>
+            不驗證安全性的執行查詢操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.TakeDownSqlSyntaxInfo(EzCoding.Returner,EzCoding.DB.SqlSyntax,System.Reflection.MemberInfo)">
+            <summary>
+            記錄所執行的 SQL 指令。
+            </summary>
+            <param name="returner">EzCoding.Returner。</param>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax。</param>
+            <param name="memberInfo">System.Reflection.MemberInfo。</param>
+            <exception cref="T:System.ArgumentNullException">參數 returner 不允許為 null 值。</exception>
+            <exception cref="T:System.ArgumentNullException">參數 sqlSyntax 不允許為 null 值。</exception>
+            <exception cref="T:System.ArgumentNullException">參數 memberInfo 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.TakeDownSqlSyntaxInfo(EzCoding.Returner,System.String,System.Reflection.MemberInfo)">
+            <summary>
+            記錄所執行的 SQL 指令。
+            </summary>
+            <param name="returner">EzCoding.Returner。</param>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax。</param>
+            <param name="memberInfo">System.Reflection.MemberInfo。</param>
+            <exception cref="T:System.ArgumentNullException">參數 returner 不允許為 null 值。</exception>
+            <exception cref="T:System.ArgumentNullException">參數 sqlSyntax 不允許為 null 值。</exception>
+            <exception cref="T:System.ArgumentNullException">參數 memberInfo 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.DataAccess.FillFeedbackMessage(System.String,EzCoding.DB.SqlSyntax)">
+            <summary>
+            組合資料庫操作例外時所產生的訊息。
+            </summary>
+            <param name="exception">例外訊息。</param>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax。</param>
+            <returns>組合後的訊息。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 sqlSyntax 不允許為 null 值。</exception>
+        </member>
+        <member name="P:EzCoding.DB.DataAccess.DBConnector">
+            <summary>
+            設定連線管理員。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.DataAccess.ProviderFilePath">
+            <summary>
+            取得或設定 DB Provider 的檔案路徑（預設為讀取同目錄下的 ConnectionString.txt）。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataAccess.#ctor">
+            <summary>
+            初始化 EzCoding.DB.OracleClient.OracleDataAccess 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataAccess.CreateConnection">
+            <summary>
+            建立資料庫連線。
+            </summary>
+            <returns>資料庫連線的實作介面。</returns>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataAccess.ConvertToOracleDbType(EzCoding.DB.GenericDBType)">
+            <summary>
+            轉換為對應的資料庫型別。
+            </summary>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>對應的資料庫型別。</returns>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataAccess.ExecuteTransaction(EzCoding.DB.SqlSyntaxCommander,System.Boolean)">
+            <summary>
+            執行交易異動操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 sqlSyntaxCommander 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataAccess.UnsafeExecuteTransaction(System.String,System.Boolean)">
+            <summary>
+            不驗證安全性的執行交易異動操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataAccess.ExecuteInquire(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            執行查詢操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 sqlSyntaxCommander 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleDataAccess.UnsafeExecuteInquire(System.String)">
+            <summary>
+            不驗證安全性的執行查詢操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="T:EzCoding.DB.MSSqlClient.MSSqlDataAccess">
+            <summary>
+            MSSQL 資料庫存取執行的類別實作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataAccess.#ctor">
+            <summary>
+            初始化 EzCoding.DB.MsSqlClient.MsSqlDataAccess 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataAccess.CreateConnection">
+            <summary>
+            建立資料庫連線。
+            </summary>
+            <returns>資料庫連線的實作介面。</returns>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataAccess.ConvertToSqlDbType(EzCoding.DB.GenericDBType)">
+            <summary>
+            轉換為對應的資料庫型別。
+            </summary>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>對應的資料庫型別。</returns>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataAccess.ExecuteTransaction(EzCoding.DB.SqlSyntaxCommander,System.Boolean)">
+            <summary>
+            執行交易異動操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 sqlSyntaxCommander 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataAccess.UnsafeExecuteTransaction(System.String,System.Boolean)">
+            <summary>
+            不驗證安全性的執行交易異動操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataAccess.ExecuteInquire(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            執行查詢操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 sqlSyntaxesReturner 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataAccess.UnsafeExecuteInquire(System.String)">
+            <summary>
+            不驗證安全性的執行查詢操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="T:EzCoding.DB.IEntityBase">
+            <summary>
+            資料庫實體操作的介面實作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.Dispose">
+            <summary>
+            執行與釋放（Free）、釋放（Release）或重設 Unmanaged 資源相關聯之應用程式定義的工作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.Add(System.Data.DataSet)">
+            <summary>
+            新增一筆資料列。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <returns>EzCoding.Returner。若新增成功則回傳時包含著一個「NEW_SID」的 DataTable 和「TABLE_NAME」、「SID」兩個欄位。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.AddBuffer(System.Data.DataSet)">
+            <summary>
+            新增一筆資料列緩衝。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。若新增成功則回傳時包含著一個「NEW_SID」的 DataTable 和「TABLE_NAME」、「SID」兩個欄位。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.Add(EzCoding.DB.TransColValSet)">
+            <summary>
+            新增一筆資料列。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>EzCoding.Returner。若新增成功則回傳時包含著一個「NEW_SID」的 DataTable 和「SID」欄位。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.AddBuffer(EzCoding.DB.TransColValSet)">
+            <summary>
+            新增一筆資料列緩衝。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。若新增成功則回傳時包含著一個「NEW_SID」的 DataTable 和「SID」欄位。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.UpdateBy(System.Data.DataSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容（此修改並不包含修改Primary Key）。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            dSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.UpdateBuffer(System.Data.DataSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容資料列緩衝。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            dSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.UpdateBy(EzCoding.DB.TransColValSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容（此修改並不包含修改Primary Key）。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            transSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.UpdateBuffer(EzCoding.DB.TransColValSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容資料列緩衝。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            transSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.UpdateColumnSelfOperationBy(System.String,EzCoding.MathOperator,System.Object,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改指定欄位運算後的內容。
+            </summary>
+            <param name="columnName">異動的欄位名稱。</param>
+            <param name="mathOperator">數學中使用的運算符號列舉。</param>
+            <param name="operationValue">運算值。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            dSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.UpdateColumnSelfOperationByBuffer(System.String,EzCoding.MathOperator,System.Object,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改指定欄位運算後的內容資料列緩衝。
+            </summary>
+            <param name="columnName">異動的欄位名稱。</param>
+            <param name="mathOperator">數學中使用的運算符號列舉。</param>
+            <param name="operationValue">運算值。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            dSet 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.DeleteBy(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值刪除一筆資料。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">conditions 為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.DeleteBuffer(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值刪除一筆資料資料列緩衝。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">conditions 為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.ExecuteTransaction(EzCoding.DB.SqlSyntaxCommander,System.Boolean)">
+            <summary>
+            執行交易異動操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 SqlSyntaxCommander 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.UnsafeExecuteTransaction(System.String,System.Boolean)">
+            <summary>
+            不驗證安全性的執行交易異動操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetSubquerySqlSyntaxBy(System.String,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得子查詢 SQL 語法。
+            </summary>
+            <param name="inquireColumn">指定查詢的欄位名稱。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetInfoBy(System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet,System.String[])">
+            <summary>
+            依所指定的鍵值取得資料列。
+            </summary>
+            <param name="size">指定的前 N 筆資料（若為 Int32.MaxValue 則表示為全部）。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <param name="inquireColumns">含有零或多個指定查詢時所要使用的欄位名稱 System.String 陣列。若陣列為零，則使用預設開放的欄位名稱。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetCountBy(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得資料列筆數。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetRandomBy(System.Int32,EzCoding.DB.SqlCondsSet,System.String[])">
+            <summary>
+            依所指定的鍵值取得隨機的資料列。
+            </summary>
+            <param name="size">筆數。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <param name="inquireColumns">含有零或多個指定查詢時所要使用的欄位名稱 System.String 陣列。若陣列為零，則使用預設開放的欄位名稱。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetSumBy(System.String[],EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得欄位加總。
+            </summary>
+            <param name="columnsName">要加總的欄位名稱陣列。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetPagingBy(System.Int32,System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet,System.String[])">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <param name="inquireColumns">含有零或多個指定查詢時所要使用的欄位名稱 System.String 陣列。若陣列為零，則使用預設開放的欄位名稱。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetPagingBy(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet,System.String[])">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <param name="inquireColumns">含有零或多個指定查詢時所要使用的欄位名稱 System.String 陣列。若陣列為零，則使用預設開放的欄位名稱。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetGroupBy(EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「count」欄位計算總數。
+            </summary>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetGroupPagingBy(System.Int32,System.Int32,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「count」欄位計算總數。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetGroupPagingBy(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「count」欄位計算總數。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.GetGroupCountBy(EzCoding.DB.SqlGroup,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的 Group By 及鍵值取得資料列筆數。
+            </summary>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.ExecuteInquire(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            執行查詢操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.DB.IEntityBase.UnsafeExecuteInquire(System.String)">
+            <summary>
+            不驗證安全性的執行查詢操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="P:EzCoding.DB.IEntityBase.SqlSymbol">
+            <summary>
+            參數符號。用於資料庫欄位參數的變數使用。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.IEntityBase.QuotationMarks">
+            <summary>
+            引述符號樣式類別。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.IEntityBase.EnableCustomEntity">
+            <summary>
+            取得或設定是否啟用自訂資料實體。
+            若為 true，則會使用 CustomEntitySqlSyntax 取代 EntityName 做為資料實體。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.IEntityBase.CustomEntityPreSqlSyntax">
+            <summary>
+            取得或設定自訂資料實體的前置 SQL 語法。
+            當 EnableCustomEntity 為 true 時，將在查詢操作時，置於自訂資料實體之前。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.IEntityBase.CustomEntitySqlSyntax">
+            <summary>
+            取得或設定自訂資料實體的 SQL 語法。
+            當 EnableCustomEntity 為 true 時，將在查詢操作時，取代 EntityName 做為資料實體。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.PagingFlipper">
+            <summary>
+            分頁操作參數集合。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.PagingFlipper.#ctor">
+            <summary>
+            初始化 EzCoding.DB.PagingFlipper 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.PagingFlipper.#ctor(System.Int32)">
+            <summary>
+            初始化 EzCoding.DB.PagingFlipper 類別的新執行個體。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+        </member>
+        <member name="M:EzCoding.DB.PagingFlipper.#ctor(System.Int32,System.Int32)">
+            <summary>
+            初始化 EzCoding.DB.PagingFlipper 類別的新執行個體。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+        </member>
+        <member name="M:EzCoding.DB.PagingFlipper.GetBeginSeq">
+            <summary>
+            取得目前頁數的資料列起始流水號。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:EzCoding.DB.PagingFlipper.Size">
+            <summary>
+            每頁的筆數。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.PagingFlipper.Page">
+            <summary>
+            第幾頁。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.PagingFlipper.Total">
+            <summary>
+            已取得的資料總數。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.OracleClient.OracleConnector">
+            <summary>
+            Oracle 連線管理員基底類別。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleConnector.#ctor">
+            <summary>
+            初始化 EzCoding.DB.OracleClient.OracleConnector 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleConnector.#ctor(System.String)">
+            <summary>
+            依資料庫連線字串，初始化 EzCoding.DB.OracleClient.OracleConnector 類別的新執行個體。
+            </summary>
+            <param name="connectionString">資料庫連線字串。</param>
+        </member>
+        <member name="M:EzCoding.DB.OracleClient.OracleConnector.#ctor(System.Data.IDbConnection)">
+            <summary>
+            依 System.Data.IDbConnection，初始化 EzCoding.DB.OracleClient.OracleConnector 類別的新執行個體。
+            </summary>
+            <param name="connection">資料庫連線物件。</param>
+        </member>
+        <member name="T:EzCoding.DB.Interface.IEntitySystem">
+            <summary>
+            實體系統操作的介面實作。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.MSSqlClient.MSSqlDataHandler">
+            <summary>
+            MSSQL 資料庫存取操作的類別實作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataHandler.#ctor">
+            <summary>
+            初始化 EzCoding.DB.MsSqlClient.MSSqlDataHandler 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataHandler.GetInfoBuffer(System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得資料列緩衝。
+            </summary>
+            <param name="size">指定的前 N 筆資料（若為 Int32.MaxValue 則表示為全部）。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataHandler.GetPagingBuffer(System.Int32,System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataHandler.GetPagingBuffer(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            flipper 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataHandler.GetRandomBuffer(System.Int32,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得隨機的資料列緩衝。
+            </summary>
+            <param name="size">筆數。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataHandler.GetGroupPagingBuffer(System.Int32,System.Int32,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            sqlGroup 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataHandler.GetGroupPagingBuffer(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數緩衝。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">
+            flipper 為 null 值。
+            sqlGroup 為 null 值。
+            conditions 為 null 值。
+            </exception>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataHandler.ToSqlStatement(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            將 EzCoding.DB.SqlSyntaxCommander 轉換為 SQL 語法。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <returns>SQL 字串。</returns>
+        </member>
+        <member name="M:EzCoding.DB.MSSqlClient.MSSqlDataHandler.ToSqlStatement(EzCoding.DB.SqlSyntax)">
+            <summary>
+            將 EzCoding.DB.SqlSyntax 轉換為 SQL 語法。
+            </summary>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax。</param>
+            <returns>SQL 字串。</returns>
+        </member>
+        <member name="T:EzCoding.DB.DBUtilBox">
+            <summary>
+            資料庫工具箱。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.DBUtilBox.BindingRow``1(System.Object,System.Data.DataRow)">
+            <summary>
+            依 EzCoding.DB.SchemaMappingAttribute 屬性繫結資料列。
+            </summary>
+            <param name="info">符合資料表欄位的類別資訊物件實例。</param>
+            <param name="row">要被繫結的資料列。</param>
+        </member>
+        <member name="M:EzCoding.DB.DBUtilBox.BindingRow(System.Object,System.Data.DataRow)">
+            <summary>
+            依 EzCoding.DB.SchemaMappingAttribute 屬性繫結資料列。
+            </summary>
+            <param name="info">符合資料表欄位的類別資訊物件實例。</param>
+            <param name="row">要被繫結的資料列。</param>
+        </member>
+        <member name="M:EzCoding.DB.DBUtilBox.BindingInput``1(System.Object,System.Object)">
+            <summary>
+            依 EzCoding.DB.SchemaMappingAttribute 屬性繫結輸入資訊。
+            </summary>
+            <param name="info">符合資料表欄位的類別資訊物件實例。</param>
+            <param name="input">符合資料表欄位的類別輸入資訊物件實例。</param>
+        </member>
+        <member name="M:EzCoding.DB.DBUtilBox.BindingInput(System.Object,System.Object)">
+            <summary>
+            依 EzCoding.DB.SchemaMappingAttribute 屬性繫結輸入資訊。
+            </summary>
+            <param name="info">符合資料表欄位的類別資訊物件實例。</param>
+            <param name="input">符合資料表欄位的類別輸入資訊物件實例。</param>
+        </member>
+        <member name="T:EzCoding.DB.SqlGroup">
+            <summary>
+            SQL 群組 (Group By) 的組合類別。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlGroup.#ctor">
+            <summary>
+            初始化 EzCoding.DB.SqlGroup 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlGroup.#ctor(System.String)">
+            <summary>
+            初始化 EzCoding.DB.SqlGroup 類別的新執行個體。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlGroup.#ctor(System.String[])">
+            <summary>
+            初始化 EzCoding.DB.SqlGroup 類別的新執行個體。
+            </summary>
+            <param name="sqlGroups">含有零或多個欄位名稱的 System.String 陣列。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlGroup.Add(System.String)">
+            <summary>
+            新增 Group By。
+            </summary>
+            <param name="fieldName">欄位名稱。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlGroup.Output(EzCoding.QuotationMarks)">
+            <summary>
+            輸出完整的 Group By 語法。
+            </summary>
+            <param name="quotationMarks">引述符號樣式類別。</param>
+            <returns>完整的 Group By 語法。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 quotationMarks不允許為 null 值。</exception>
+        </member>
+        <member name="P:EzCoding.DB.SqlGroup.Count">
+            <summary>
+            取得實際包含的組合數。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlGroup.GroupNames">
+            <summary>
+            取得群組名稱。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.GenericDBType">
+            <summary>
+            泛用的資料庫型別列舉。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Undefined">
+            <summary>
+            未定義。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Bit">
+            <summary>
+            不帶正負號的 0 或 1。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.TinyInt">
+            <summary>
+            微整數。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.SmallInt">
+            <summary>
+            短整數。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Int">
+            <summary>
+            整數。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.BigInt">
+            <summary>
+            長整數。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Float">
+            <summary>
+            浮點數。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Decimal">
+            <summary>
+            固定精準度和小數的數值。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Binary">
+            <summary>
+            固定長度的二進位資料。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.VarBinary">
+            <summary>
+            可變動長度的二進位資料。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Image">
+            <summary>
+            依資料流大小自動變動長度的二進位資料。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Date">
+            <summary>
+            日期。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.DateTime">
+            <summary>
+            日期時間。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.SmallDateTime">
+            <summary>
+            短日期時間。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Char">
+            <summary>
+            固定長度字元。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.VarChar">
+            <summary>
+            可變動長度字串，用在小型資料長度的字串內容。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.Text">
+            <summary>
+            可變動長度字串，用在大型資料長度的字串內容。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.NChar">
+            <summary>
+            Unicode 的固定長度字元。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.NVarChar">
+            <summary>
+            Unicode 的可變動長度字串，用在小型資料長度的字串內容。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.GenericDBType.NText">
+            <summary>
+            Unicode 的可變動長度字串，用在大型資料長度的字串內容。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlSyntaxBuilder">
+            <summary>
+            SQL 語法建立類別。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.#ctor(EzCoding.DB.IEntityBase,EzCoding.DB.SqlSyntax)">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntaxBuilder 類別的新執行個體。
+            </summary>
+            <param name="entity">資料庫實體操作的介面實作。</param>
+            <param name="sqlSyntax">SQL 語法的物件實作。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.Append(System.String)">
+            <summary>
+            附加要在資料來源執行的 Transact-SQL 陳述式、資料表名稱或預存程序。
+            </summary>
+            <param name="value">附加 SQL 語法。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.AppendLine(System.String)">
+            <summary>
+            附加要在資料來源執行的 Transact-SQL 陳述式、資料表名稱或預存程序，並在最後附加預設行結束字元。
+            </summary>
+            <param name="value">附加 SQL 語法。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.AppendFormat(System.String,System.Object[])">
+            <summary>
+            附加要在資料來源執行的 Transact-SQL 陳述式、資料表名稱或預存程序。
+            </summary>
+            <param name="format">附加複合格式 SQL 語法。</param>
+            <param name="args">要格式化的物件。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.GetSqlSyntax">
+            <summary>
+            取得繫結 SQL 語法後的 SqlSyntax。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.AddParameter(System.String,System.Object,EzCoding.DB.GenericDBType)">
+            <summary>
+            加入 SQL Parameter。
+            </summary>
+            <param name="colName">欄位名稱。</param> 
+            <param name="colValue">欄位值。</param> 
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>SQL Parameter 的參數宣告，例如「@Param」。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.AddParameter(System.String,System.Object[],EzCoding.DB.GenericDBType)">
+            <summary>
+            加入 SQL Parameter。
+            </summary>
+            <param name="colName">欄位名稱。</param> 
+            <param name="colValues">欄位值陣列集合。</param> 
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>SQL Parameter 的參數宣告，例如「@Param」。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.AddParameter(EzCoding.DB.IEntityBase,EzCoding.DB.SqlSyntax,System.String,System.Object,EzCoding.DB.GenericDBType)">
+            <summary>
+            加入 SQL Parameter。
+            </summary>
+            <param name="entity">資料庫實體操作的介面實作。</param>
+            <param name="sqlSyntax">SQL 語法的物件實作。</param>
+            <param name="colName">欄位名稱。</param> 
+            <param name="colValue">欄位值。</param> 
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>SQL Parameter 的參數宣告，例如「@Param」。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.BuildFTConds(System.String,EzCoding.Collections.SimpleDataSet{System.String,System.Object},System.String,EzCoding.DB.GenericDBType)">
+            <summary>
+            建立全文檢索查詢語法。
+            </summary>
+            <param name="tableName">表格名稱（若不為 null 或 empty 則會在欄位前加入表格名稱）。</param>
+            <param name="ftSearch">全文檢索查詢（若為 null 或陣列長度等於 0 則傳回空字串）。</param> 
+            <param name="keywordSeparator">關鍵字分隔字串。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>全文檢索查詢語法。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.BuildFTConds(System.String,EzCoding.Collections.SimpleDataSet{System.String,System.Object},System.String,EzCoding.DB.GenericDBType,System.String)">
+            <summary>
+            建立全文檢索查詢語法。
+            </summary>
+            <param name="tableName">表格名稱（若不為 null 或 empty 則會在欄位前加入表格名稱）。</param>
+            <param name="ftSearch">全文檢索查詢（若為 null 或陣列長度等於 0 則傳回空字串）。</param> 
+            <param name="keywordSeparator">關鍵字分隔字串。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="withPrevSyntax">查詢語法結果前面所要附加的語法。</param>
+            <returns>全文檢索查詢語法。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.BuildFTConds(EzCoding.DB.IEntityBase,EzCoding.DB.SqlSyntax,System.String,EzCoding.Collections.SimpleDataSet{System.String,System.Object},System.String,EzCoding.DB.GenericDBType)">
+            <summary>
+            建立全文檢索查詢語法。
+            </summary>
+            <param name="entity">資料庫實體操作的介面實作。</param>
+            <param name="sqlSyntax">SQL 語法的物件實作。</param>
+            <param name="tableName">表格名稱（若不為 null 或 empty 則會在欄位前加入表格名稱）。</param>
+            <param name="ftSearch">全文檢索查詢（若為 null 或陣列長度等於 0 則傳回空字串）。</param> 
+            <param name="keywordSeparator">關鍵字分隔字串。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>全文檢索查詢語法。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.BuildConds(System.String,System.String,EzCoding.DB.SqlOperator,System.Object,EzCoding.DB.GenericDBType)">
+            <summary>
+            建立條件語法及 Parameter。
+            </summary>
+            <param name="tableName">表格名稱（若不為 null 或 empty 則會在欄位前加入表格名稱）。</param>
+            <param name="colName">欄位名稱。</param> 
+            <param name="sqlOperator">與欄位參數間的運算式。</param>
+            <param name="colValue">欄位值。</param> 
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>條件語法。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.BuildConds(EzCoding.DB.IEntityBase,EzCoding.DB.SqlSyntax,System.String,System.String,EzCoding.DB.SqlOperator,System.Object,EzCoding.DB.GenericDBType)">
+            <summary>
+            建立條件語法及 Parameter。
+            </summary>
+            <param name="entity">資料庫實體操作的介面實作。</param>
+            <param name="sqlSyntax">SQL 語法的物件實作。</param>
+            <param name="tableName">表格名稱（若不為 null 或 empty 則會在欄位前加入表格名稱）。</param>
+            <param name="colName">欄位名稱。</param> 
+            <param name="sqlOperator">與欄位參數間的運算式。</param>
+            <param name="colValue">欄位值。</param> 
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>條件語法。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.BuildConds(System.String,System.String,EzCoding.DB.SqlOperator,System.String)">
+            <summary>
+            建立條件語法。
+            </summary>
+            <param name="tableName">表格名稱（若不為 null 或 empty 則會在欄位前加入表格名稱）。</param>
+            <param name="colName">欄位名稱。</param> 
+            <param name="sqlOperator">與欄位參數間的運算式。</param>
+            <param name="syntaxParam">指定的 Parameter。</param>
+            <returns>條件語法。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.BuildConds(EzCoding.DB.IEntityBase,System.String,System.String,EzCoding.DB.SqlOperator,System.String)">
+            <summary>
+            建立條件語法。
+            </summary>
+            <param name="entity">資料庫實體操作的介面實作。</param>
+            <param name="tableName">表格名稱（若不為 null 或 empty 則會在欄位前加入表格名稱）。</param>
+            <param name="colName">欄位名稱。</param> 
+            <param name="sqlOperator">與欄位參數間的運算式。</param>
+            <param name="syntaxParam">指定的 Parameter。</param>
+            <returns>條件語法。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.BuildConds(System.String,System.String,EzCoding.DB.SqlOperator,System.Object[],EzCoding.DB.GenericDBType)">
+            <summary>
+            建立條件語法及 Parameter。
+            </summary>
+            <param name="tableName">表格名稱（若不為 null 或 empty 則會在欄位前加入表格名稱）。</param>
+            <param name="colName">欄位名稱。</param> 
+            <param name="sqlOperator">與欄位參數間的運算式。</param>
+            <param name="colValues">欄位值陣列集合。</param> 
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>條件語法。</returns>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxBuilder.BuildConds(EzCoding.DB.IEntityBase,EzCoding.DB.SqlSyntax,System.String,System.String,EzCoding.DB.SqlOperator,System.Object[],EzCoding.DB.GenericDBType)">
+            <summary>
+            建立條件語法及 Parameter。
+            </summary>
+            <param name="entity">資料庫實體操作的介面實作。</param>
+            <param name="sqlSyntax">SQL 語法的物件實作。</param>
+            <param name="tableName">表格名稱（若不為 null 或 empty 則會在欄位前加入表格名稱）。</param>
+            <param name="colName">欄位名稱。</param> 
+            <param name="sqlOperator">與欄位參數間的運算式。</param>
+            <param name="colValues">欄位值陣列集合。</param> 
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <returns>條件語法。</returns>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxBuilder.Entity">
+            <summary>
+            資料庫實體操作的介面實作。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxBuilder.SqlSyntax">
+            <summary>
+            SQL 語法的物件實作。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxBuilder.SqlCommand">
+            <summary>
+            要在資料來源執行的 Transact-SQL 陳述式、資料表名稱或預存程序。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlSyntaxesReturner">
+            <summary>
+            操作 SQL 語法物件（EzCoding.DB.SqlSyntaxCommander）時的回傳物件。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxesReturner.#ctor">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntaxesReturner 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxesReturner.ChangeInto(EzCoding.DB.SqlSyntaxReturner)">
+            <summary>
+            將目前的執行個體的 EzCoding.Returner 基底變成指定的 EzCoding.Returner 內容，並加入來源的 EzCoding.DB.SqlSyntaxReturner。
+            唯 Feedback 的覆寫與否，會依據兩個 Feedback 之間的回饋層級和優先權層級而決定。
+            </summary>
+            <param name="source">指定要複製的來源 EzCoding.DB.SqlSyntaxReturner。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 source 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxesReturner.ChangeInto(EzCoding.DB.SqlSyntaxesReturner)">
+            <summary>
+            將目前的執行個體的 EzCoding.Returner 基底變成指定的 EzCoding.Returner 內容，並加入來源的 EzCoding.DB.SqlSyntaxesReturner。
+            唯 Feedback 的覆寫與否，會依據兩個 Feedback 之間的回饋層級和優先權層級而決定。
+            </summary>
+            <param name="source">指定要複製的來源 EzCoding.DB.SqlSyntaxesReturner。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 source 不允許為 null 值。</exception>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxesReturner.SqlSyntaxes">
+            <summary>
+            取得或設定 EzCoding.DB.SqlSyntaxCommander 執行個體。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.DBProvider">
+            <summary>
+            資料庫提供者的列舉。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.DBProvider.MicrosoftSql">
+            <summary>
+            Microsoft SQL Server。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.DBProvider.MicrosoftOfficeDataAccess">
+            <summary>
+            Microsoft Office DataAccess。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.DBProvider.Oracle">
+            <summary>
+            Oracle Server。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.DBProvider.MySql">
+            <summary>
+            MySql Server。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.ConnectionStringSource">
+            <summary>
+            資料庫連線字串的來源。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.ConnectionStringSource.DBProviderConnectionString">
+            <summary>
+            資料庫提供者連線字串。
+            </summary>
+        </member>
+        <member name="F:EzCoding.DB.ConnectionStringSource.PhysicalPath">
+            <summary>
+            實體檔案系統路徑。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SchemaMappingAttribute">
+            <summary>
+            資料結構對應屬性定義。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SchemaMappingAttribute.ToValue(System.Object)">
+            <summary>
+            將資料欄位值轉成屬性使用值。
+            </summary>
+            <param name="value">資料欄位值。</param>
+        </member>
+        <member name="P:EzCoding.DB.SchemaMappingAttribute.Name">
+            <summary>
+            Schema Name。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SchemaMappingAttribute.Type">
+            <summary>
+            回傳的資料型別。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SchemaMappingAttribute.AllowNull">
+            <summary>
+            是否允許 Null。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.TransColVal">
+            <summary>
+            異動的資料。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.TransColVal.#ctor(System.String,System.Object)">
+            <summary>
+            初始化 EzCoding.DB.TransColVal 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.TransColVal.#ctor(System.String,System.Object,EzCoding.DB.GenericDBType)">
+            <summary>
+            初始化 EzCoding.DB.TransColVal 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.TransColVal.ColumnName">
+            <summary>
+            欄位名稱。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.TransColVal.ColumnValue">
+            <summary>
+            欄位值。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.TransColVal.DBType">
+            <summary>
+            泛用的資料庫型別列舉。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.TransColValSet">
+            <summary>
+            異動的資料集合。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.#ctor">
+            <summary>
+            初始化 EzCoding.DB.TransColValSet 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.Add(System.String,System.Object)">
+            <summary>
+            新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <returns>EzCoding.DB.TransColVal。</returns>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.Add(System.String,System.Object,EzCoding.DB.GenericDBType)">
+            <summary>
+            新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <exception cref="T:System.ArgumentNullException">參數 columnName 不允許為 null 值。</exception>
+            <returns>EzCoding.DB.TransColVal。</returns>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.String,EzCoding.DB.GenericDBType,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="isCheck">是否檢查欄位值是否為 null 或 empty 決定是否新增欄位，若為 false，則一律新增指定欄位（欄位值若為  null 則為 System.DBNull.Value）。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.String,EzCoding.DB.GenericDBType,System.Boolean,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="isCheck">是否檢查欄位值是否為 null 或 empty 決定是否新增欄位，若為 false，則一律新增指定欄位（欄位值若為 null 則為 System.DBNull.Value）。</param>
+            <param name="setDBNull">當 isCheck 為 true，而欄位值為 null 或 empty 時，是否將欄位值設為 System.DBNull.Value。若 isCheck 為 false 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.DateTime,System.String,EzCoding.DB.GenericDBType)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 DateTime.MinValue 則不新增欄位）。</param>
+            <param name="format">System.DateTime 的輸出格式（若為 null 或 empty 則欄位值維持 System.DateTime 型別）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.DateTime,System.String,EzCoding.DB.GenericDBType,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 DateTime.MinValue 則不新增欄位）。</param>
+            <param name="format">System.DateTime 的輸出格式（若為 null 或 empty 則欄位值維持 System.DateTime 型別）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值為 DateTime.MinValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值不為 DateTime.MinValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.DateTime},System.String,EzCoding.DB.GenericDBType)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="format">System.DateTime 的輸出格式（若為 null 或 empty 則欄位值維持 System.DateTime 型別）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.DateTime},System.String,EzCoding.DB.GenericDBType,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="format">System.DateTime 的輸出格式（若為 null 或 empty 則欄位值維持 System.DateTime 型別）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值為 DateTime.MinValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值不為 DateTime.MinValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Byte[],EzCoding.DB.GenericDBType)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若為 null 或陣列長度為 0 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Byte[],EzCoding.DB.GenericDBType,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若為 null 或陣列長度為 0 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值為 null 或陣列長度為零時，是否將欄位值設為 System.DBNull.Value。若欄位值不為 null 或陣列長度為零時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int16,EzCoding.DB.GenericDBType,System.Int16[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Int16 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int16,EzCoding.DB.GenericDBType,System.Boolean,System.Int16[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Int16 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int16,EzCoding.DB.GenericDBType,System.Int16,System.Int16)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int16,EzCoding.DB.GenericDBType,System.Int16,System.Int16,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int16},EzCoding.DB.GenericDBType,System.Int16[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Int16 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int16},EzCoding.DB.GenericDBType,System.Boolean,System.Int16[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Int16 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int16},EzCoding.DB.GenericDBType,System.Int16,System.Int16)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int16},EzCoding.DB.GenericDBType,System.Int16,System.Int16,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int32,EzCoding.DB.GenericDBType,System.Int32[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Int32 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int32,EzCoding.DB.GenericDBType,System.Boolean,System.Int32[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Int32 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int32,EzCoding.DB.GenericDBType,System.Int32,System.Int32)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int32,EzCoding.DB.GenericDBType,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int32},EzCoding.DB.GenericDBType,System.Int32[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Int32 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int32},EzCoding.DB.GenericDBType,System.Boolean,System.Int32[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Int32 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int32},EzCoding.DB.GenericDBType,System.Int32,System.Int32)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int32},EzCoding.DB.GenericDBType,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int64,EzCoding.DB.GenericDBType,System.Int64[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Int64 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int64,EzCoding.DB.GenericDBType,System.Boolean,System.Int64[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Int64 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int64,EzCoding.DB.GenericDBType,System.Int64,System.Int64)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Int64,EzCoding.DB.GenericDBType,System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int64},EzCoding.DB.GenericDBType,System.Int64[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Int64 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int64},EzCoding.DB.GenericDBType,System.Boolean,System.Int64[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Int64 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int64},EzCoding.DB.GenericDBType,System.Int64,System.Int64)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Int64},EzCoding.DB.GenericDBType,System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Single,EzCoding.DB.GenericDBType,System.Single[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Single 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Single,EzCoding.DB.GenericDBType,System.Boolean,System.Single[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Single 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Single,EzCoding.DB.GenericDBType,System.Single,System.Single)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Single,EzCoding.DB.GenericDBType,System.Single,System.Single,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Single},EzCoding.DB.GenericDBType,System.Single[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Single 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Single},EzCoding.DB.GenericDBType,System.Boolean,System.Single[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Single 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Single},EzCoding.DB.GenericDBType,System.Single,System.Single)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Single},EzCoding.DB.GenericDBType,System.Single,System.Single,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Double,EzCoding.DB.GenericDBType,System.Double[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Double 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Double,EzCoding.DB.GenericDBType,System.Boolean,System.Double[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Double 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Double,EzCoding.DB.GenericDBType,System.Double,System.Double)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Double,EzCoding.DB.GenericDBType,System.Double,System.Double,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Double},EzCoding.DB.GenericDBType,System.Double[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Double 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Double},EzCoding.DB.GenericDBType,System.Boolean,System.Double[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Double 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Double},EzCoding.DB.GenericDBType,System.Double,System.Double)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Double},EzCoding.DB.GenericDBType,System.Double,System.Double,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Decimal,EzCoding.DB.GenericDBType,System.Decimal[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Decimal 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Decimal,EzCoding.DB.GenericDBType,System.Boolean,System.Decimal[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Decimal 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Decimal,EzCoding.DB.GenericDBType,System.Decimal,System.Decimal)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Decimal,EzCoding.DB.GenericDBType,System.Decimal,System.Decimal,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Decimal},EzCoding.DB.GenericDBType,System.Decimal[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="nothingValues">System.Decimal 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Decimal},EzCoding.DB.GenericDBType,System.Boolean,System.Decimal[])">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="setDBNull">當欄位值包含在 nothingValues 時，是否將欄位值設為 System.DBNull.Value。若欄位值不包含在 nothingValues 時，setDBNull 沒有任何作用。</param>
+            <param name="nothingValues">System.Decimal 陣列。含有零個或多個表示不新增欄位的數值，若陣列長度為零且 columnValue 不為 null，則一律新增欄位。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Decimal},EzCoding.DB.GenericDBType,System.Decimal,System.Decimal)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,System.Nullable{System.Decimal},EzCoding.DB.GenericDBType,System.Decimal,System.Decimal,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值（若等於 null 則不新增欄位）。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="minValue">欄位值指定的最小數字。</param>
+            <param name="maxValue">欄位值指定的最大數字。</param>
+            <param name="setDBNull">當欄位值小於 minValue 或大於 maxValue 時，是否將欄位值設為 System.DBNull.Value。若欄位值大於等於 minValue 且小於等於 maxValue 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,EzCoding.ISystemId,EzCoding.ISystemId,EzCoding.DB.GenericDBType,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="verifier">指定要使用的系統代號驗證類別。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="isCheck">是否檢查欄位值是否為 null 或格式是否正確決定是否新增欄位，若為 false，則一律新增指定欄位（為 false 但欄位值為 null 時則直接將欄位值設為 System.DBNull.Value）。</param>
+        </member>
+        <member name="M:EzCoding.DB.TransColValSet.SmartAdd(System.String,EzCoding.ISystemId,EzCoding.ISystemId,EzCoding.DB.GenericDBType,System.Boolean,System.Boolean)">
+            <summary>
+            動態判斷決定是新增一筆異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <param name="columnValue">欄位值。</param>
+            <param name="verifier">指定要使用的系統代號驗證類別。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+            <param name="isCheck">是否檢查欄位值是否為 null 或格式是否正確決定是否新增欄位，若為 false，則一律新增指定欄位（為 false 但欄位值為 null 時則直接將欄位值設為 System.DBNull.Value）。</param>
+            <param name="setDBNull">當 isCheck 為 true，而欄位值為 null 時，是否將欄位值設為 System.DBNull.Value。若 isCheck 為 false 時，setDBNull 沒有任何作用。</param>
+        </member>
+        <member name="P:EzCoding.DB.TransColValSet.Item(System.String)">
+            <summary>
+            取得異動的資料。
+            </summary>
+            <param name="columnName">欄位名稱。</param>
+            <returns>EzCoding.DB.TransColVal。</returns>
+        </member>
+        <member name="P:EzCoding.DB.TransColValSet.List">
+            <summary>
+            異動的資料集合。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlSyntaxCommander">
+            <summary>
+            SqlSyntax 的集合物件。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.#ctor">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntaxCommander 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.#ctor(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntaxCommander 類別的新執行個體。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander 物件。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.#ctor(EzCoding.DB.SqlSyntax[])">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntaxCommander 類別的新執行個體。
+            </summary>
+            <param name="sqlSyntaxs">EzCoding.DB.SqlSyntax 物件陣列集合。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.Add(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            加入一筆 EzCoding.DB.SqlSyntaxCommander。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander 物件。</param>
+            <exception cref="T:System.ArgumentNullException">參數 sqlSyntaxCommander不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.Add(EzCoding.DB.SqlSyntax)">
+            <summary>
+            加入一筆 EzCoding.DB.SqlSyntax。
+            </summary>
+            <param name="sqlSyntax">EzCoding.DB.SqlSyntax 物件。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.Clear">
+            <summary>
+            移除所有 EzCoding.DB.SqlSyntax。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.Load(System.IO.Stream)">
+            <summary>
+            從指定的 System.IO.Stream 載入符合 EzCoding.DB.SqlSyntaxCommander 格式的 XML 文件（UTF8）。
+            </summary>
+            <param name="stream">要載入的 XML 資料流。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.Load(System.String)">
+            <summary>
+            從指定的 URL 或本機檔案載入符合 EzCoding.DB.SqlSyntaxCommander 格式的 XML 文件（UTF8）。
+            </summary>
+            <param name="fileName">包含要載入之 XML 文件的檔案的 URL。這個 URL 可以是本機檔案，也可以是 HTTP URL (網址)。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.Load(System.IO.TextReader)">
+            <summary>
+            從指定的 System.IO.TextReader 載入符合 EzCoding.DB.SqlSyntaxCommander 格式的 XML 文件（UTF8）。
+            </summary>
+            <param name="textReader">用於將 XML 資料送入文件中的 System.IO.TextReader。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.Load(System.Xml.XmlReader)">
+            <summary>
+            從指定的 System.Xml.XmlReader 載入符合 EzCoding.DB.SqlSyntaxCommander 格式的 XML 文件（UTF8）。
+            </summary>
+            <param name="xmlReader">用於將 XML 資料送入文件中的 System.Xml.XmlReader。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.Load(System.Xml.XmlDocument)">
+            <summary>
+            從指定的 System.Xml.XmlDocument 載入符合 EzCoding.DB.SqlSyntaxCommander 格式的 XML 文件（UTF8）。
+            </summary>
+            <param name="xml">用於將 XML 資料送入文件中的 System.Xml.XmlDocument。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxCommander.GetXml">
+            <summary>
+            傳回儲存於 EzCoding.DB.SqlSyntaxCommander 資料的 XML 表示。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxCommander.Item(System.Int32)">
+            <summary>
+            取得 EzCoding.DB.SqlSyntax 物件。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxCommander.Count">
+            <summary>
+            取得 EzCoding.DB.SqlSyntaxCommander 物件中所包含的 EzCoding.DB.SqlSyntax 總數。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlSyntax">
+            <summary>
+            SQL 語法的物件實作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntax.#ctor">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntax 類別的新執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntax.#ctor(System.String)">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntax 類別的新執行個體。
+            </summary>
+            <param name="commandText">要在資料來源執行的 Transact-SQL 陳述式、資料表名稱或預存程序。</param>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntax.CommandText">
+            <summary>
+            要在資料來源執行的 Transact-SQL 陳述式、資料表名稱或預存程序。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntax.Parameters">
+            <summary>
+            Parameters。
+            </summary>
+        </member>
+        <member name="T:EzCoding.DB.SqlSyntaxParameter">
+            <summary>
+            SQL 語法參數的物件實作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxParameter.#ctor(System.String,System.Object)">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntaxParameter 類別的新執行個體。
+            </summary>
+            <param name="name">參數名稱。</param>
+            <param name="value">參數值。</param>
+        </member>
+        <member name="M:EzCoding.DB.SqlSyntaxParameter.#ctor(System.String,System.Object,EzCoding.DB.GenericDBType)">
+            <summary>
+            初始化 EzCoding.DB.SqlSyntaxParameter 類別的新執行個體。
+            </summary>
+            <param name="name">參數名稱。</param>
+            <param name="value">參數值。</param>
+            <param name="dbType">泛用的資料庫型別列舉。</param>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxParameter.Name">
+            <summary>
+            參數名稱。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxParameter.Value">
+            <summary>
+            參數值。
+            </summary>
+        </member>
+        <member name="P:EzCoding.DB.SqlSyntaxParameter.DBType">
+            <summary>
+            泛用的資料庫型別列舉。
+            </summary>
+        </member>
+    </members>
+</doc>

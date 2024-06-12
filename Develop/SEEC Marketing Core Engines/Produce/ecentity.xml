@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ecentity</name>
+    </assembly>
+    <members>
+        <member name="T:EzCoding.SystemEngines.EntityController.Entity">
+            <summary>
+            通用 Entity 的個體實作。
+            </summary>
+        </member>
+        <member name="T:EzCoding.SystemEngines.EntityController.EntityBase">
+            <summary>
+            資料庫實體操作的基礎類別。
+            </summary>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.#ctor(EzCoding.DB.DBProvider,EzCoding.DB.DataAccess,System.String)">
+            <summary>
+            初始化可直接操作資料庫的 EzCoding.SystemEngines.EntityController.EntityBase 新執行個體。
+            </summary>
+            <param name="dbProvider">EzCoding.DB.DBProvider。</param>
+            <param name="dataAccess">取得設定資料庫存取執行物件。</param>
+            <param name="entityName">資料實體名稱。</param>
+            <exception cref="T:System.ArgumentNullException">參數 entityName 不允許為 null 或 empty 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.Dispose">
+            <summary>
+            執行與釋放（Free）、釋放（Release）或重設 Unmanaged 資源相關聯之應用程式定義的工作。
+            </summary>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.Dispose(System.Boolean)">
+            <summary>
+            清除任何使用中的資源。
+            </summary>
+            <param name="disposing">true 表示釋放 Managed 和 Unmanaged 資源；false 表示只釋放 Unmanaged 資源。</param>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.Finalize">
+            <summary>
+            解構 EzCoding.SystemEngines.EntityController.EntityBase 類別的執行個體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetSubquerySqlSyntaxBy(System.String,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得子查詢 SQL 語法。
+            </summary>
+            <param name="inquireColumn">指定查詢的欄位名稱。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetInfoBy(System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet,System.String[])">
+            <summary>
+            依所指定的鍵值取得資料列。
+            </summary>
+            <param name="size">指定的前 N 筆資料（若為 Int32.MaxValue 則表示為全部）。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <param name="inquireColumns">含有零或多個指定查詢時所要使用的欄位名稱 System.String 陣列。若陣列為零，則使用預設開放的欄位名稱。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetCountBy(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得資料列筆數。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetRandomBy(System.Int32,EzCoding.DB.SqlCondsSet,System.String[])">
+            <summary>
+            依所指定的鍵值取得隨機的資料列。
+            </summary>
+            <param name="size">筆數。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <param name="inquireColumns">含有零或多個指定查詢時所要使用的欄位名稱 System.String 陣列。若陣列為零，則使用預設開放的欄位名稱。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetSumBy(System.String[],EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值取得欄位加總。
+            </summary>
+            <param name="columnsName">要加總的欄位名稱陣列。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetPagingBy(System.Int32,System.Int32,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet,System.String[])">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <param name="inquireColumns">含有零或多個指定查詢時所要使用的欄位名稱 System.String 陣列。若陣列為零，則使用預設開放的欄位名稱。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetPagingBy(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet,System.String[])">
+            <summary>
+            依所指定的鍵值取得分頁的資料列筆數。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <param name="inquireColumns">含有零或多個指定查詢時所要使用的欄位名稱 System.String 陣列。若陣列為零，則使用預設開放的欄位名稱。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetGroupBy(EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「count」欄位計算總數。
+            </summary>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetGroupPagingBy(System.Int32,System.Int32,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「count」欄位計算總數。
+            </summary>
+            <param name="size">每頁的筆數。</param>
+            <param name="page">第幾頁。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetGroupPagingBy(EzCoding.DB.PagingFlipper,EzCoding.DB.SqlGroup,EzCoding.DB.SqlOrder,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依 Group By 取得資料列，並自動新增「count」欄位計算總數。
+            </summary>
+            <param name="flipper">分頁操作參數集合。</param>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="sqlOrder">SQL 排序（Order By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.GetGroupCountBy(EzCoding.DB.SqlGroup,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的 Group By 及鍵值取得資料列筆數。
+            </summary>
+            <param name="sqlGroup">SQL 群組（Group By）的組合類別。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.ExecuteInquire(EzCoding.DB.SqlSyntaxCommander)">
+            <summary>
+            執行查詢操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.UnsafeExecuteInquire(System.String)">
+            <summary>
+            不驗證安全性的執行查詢操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.Add(System.Data.DataSet)">
+            <summary>
+            新增一筆資料列。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.AddBuffer(System.Data.DataSet)">
+            <summary>
+            新增一筆資料列緩衝。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.Add(EzCoding.DB.TransColValSet)">
+            <summary>
+            新增一筆資料列。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.AddBuffer(EzCoding.DB.TransColValSet)">
+            <summary>
+            新增一筆資料列緩衝。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.UpdateBy(System.Data.DataSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容（此修改並不包含修改 Primary Key）。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.UpdateBuffer(System.Data.DataSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容資料列緩衝。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.UpdateBy(EzCoding.DB.TransColValSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容（此修改並不包含修改 Primary Key）。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.UpdateBuffer(EzCoding.DB.TransColValSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容資料列緩衝。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.UpdateColumnSelfOperationBy(System.String,EzCoding.MathOperator,System.Object,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改指定欄位運算後的內容。
+            </summary>
+            <param name="columnName">異動的欄位名稱。</param>
+            <param name="mathOperator">數學中使用的運算符號列舉。</param>
+            <param name="operationValue">運算值。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 columnName、operationValue 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.UpdateColumnSelfOperationByBuffer(System.String,EzCoding.MathOperator,System.Object,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改指定欄位運算後的內容資料列緩衝。
+            </summary>
+            <param name="columnName">異動的欄位名稱。</param>
+            <param name="mathOperator">數學中使用的運算符號列舉。</param>
+            <param name="operationValue">運算值。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 columnName、operationValue 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.DeleteBy(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值刪除一筆資料。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">conditions 為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.DeleteBuffer(EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值刪除一筆資料資料列緩衝。
+            </summary>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">conditions 為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.ExecuteTransaction(EzCoding.DB.SqlSyntaxCommander,System.Boolean)">
+            <summary>
+            執行交易異動操作。
+            </summary>
+            <param name="sqlSyntaxCommander">EzCoding.DB.SqlSyntaxCommander。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 SqlSyntaxCommander 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.EntityBase.UnsafeExecuteTransaction(System.String,System.Boolean)">
+            <summary>
+            不驗證安全性的執行交易異動操作（不建議使用）。
+            </summary>
+            <param name="sqlSyntax">要在資料來源執行的 Transact-SQL 陳述式或預存程序。</param>
+            <param name="enableConnectionTransaction">是否啟用 connection base 的 transaction。</param>
+            <returns>EzCoding.Returner。</returns>
+        </member>
+        <member name="P:EzCoding.SystemEngines.EntityController.EntityBase.DataAccess">
+            <summary>
+            取得設定資料庫存取執行物件。
+            </summary>
+        </member>
+        <member name="P:EzCoding.SystemEngines.EntityController.EntityBase.DataHandler">
+            <summary>
+            取得設定資料庫存取操作物件。
+            </summary>
+        </member>
+        <member name="P:EzCoding.SystemEngines.EntityController.EntityBase.SqlSymbol">
+            <summary>
+            參數符號。用於資料庫欄位參數的變數使用。
+            </summary>
+        </member>
+        <member name="P:EzCoding.SystemEngines.EntityController.EntityBase.QuotationMarks">
+            <summary>
+            引述符號樣式類別。
+            </summary>
+        </member>
+        <member name="P:EzCoding.SystemEngines.EntityController.EntityBase.EnableCustomEntity">
+            <summary>
+            取得或設定是否啟用自訂資料實體。
+            若為 true，則會使用 CustomEntitySqlSyntax 取代 EntityName 做為資料實體。
+            </summary>
+        </member>
+        <member name="P:EzCoding.SystemEngines.EntityController.EntityBase.CustomEntityPreSqlSyntax">
+            <summary>
+            取得或設定自訂資料實體的前置 SQL 語法。
+            當 EnableCustomEntity 為 true 時，將在查詢操作時，置於自訂資料實體之前。
+            </summary>
+        </member>
+        <member name="P:EzCoding.SystemEngines.EntityController.EntityBase.CustomEntitySqlSyntax">
+            <summary>
+            取得或設定自訂資料實體的 SQL 語法。
+            當 EnableCustomEntity 為 true 時，將在查詢操作時，取代 EntityName 做為資料實體。
+            </summary>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.#ctor(EzCoding.DB.DBProvider,EzCoding.DB.DataAccess,System.String)">
+            <summary>
+            初始化可直接操作資料庫的 EzCoding.SystemEngines.EntityController.Entity 新執行個體。
+            預設使用實體路徑「C:\DBProvider\ConnectionString.txt」中的連線字串。
+            </summary>
+            <param name="dbProvider">EzCoding.DB.DBProvider。</param>
+            <param name="dataAccess">取得設定資料庫存取執行物件。</param>
+            <param name="entityName">資料實體名稱。</param>
+            <exception cref="T:System.ArgumentNullException">參數 entityName 不允許為 null 或 empty 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.#ctor(EzCoding.DB.DBProvider,EzCoding.DB.DataAccess,System.String,EzCoding.ISystemId)">
+            <summary>
+            初始化可直接操作資料庫的 EzCoding.SystemEngines.EntityController.Entity 新執行個體。
+            預設使用實體路徑「C:\DBProvider\ConnectionString.txt」中的連線字串。
+            </summary>
+            <param name="dbProvider">EzCoding.DB.DBProvider。</param>
+            <param name="dataAccess">取得設定資料庫存取執行物件。</param>
+            <param name="entityName">資料實體名稱。</param>
+            <param name="systemId">指定使用的系統代號物件。</param>
+            <exception cref="T:System.ArgumentNullException">參數 entityName 不允許為 null 或 empty 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.RemoveSystemId(System.Data.DataTable)">
+            <summary>
+            移除 DataTable 中的 System ID 欄位。
+            </summary>
+            <param name="dTable">欲操作的 DataTable。</param>
+            <exception cref="T:System.ArgumentNullException">參數 dTable 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.Add(System.Data.DataSet)">
+            <summary>
+            新增一筆資料列。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <returns>EzCoding.Returner。若新增成功則回傳時包含著一個「NEW_SID」的 DataTable 和「TABLE_NAME」、「SID」兩個欄位。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.AddBuffer(System.Data.DataSet)">
+            <summary>
+            新增一筆資料列緩衝。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。若新增成功則回傳時包含著一個「NEW_SID」的 DataTable 和「TABLE_NAME」、「SID」兩個欄位。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.Add(EzCoding.DB.TransColValSet)">
+            <summary>
+            新增一筆資料列。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>EzCoding.Returner。若新增成功則回傳時包含著一個「NEW_SID」的 DataTable 和「SID」欄位。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.AddBuffer(EzCoding.DB.TransColValSet)">
+            <summary>
+            新增一筆資料列緩衝。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。若新增成功則回傳時包含著一個「NEW_SID」的 DataTable 和「SID」欄位。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.UpdateBy(System.Data.DataSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容（此修改並不包含修改 Primary Key）。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.UpdateBuffer(System.Data.DataSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容資料列緩衝。
+            </summary>
+            <param name="dSet">資料列的欄位內容。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 dSet 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.UpdateBy(EzCoding.DB.TransColValSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容（此修改並不包含修改 Primary Key）。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.Returner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 和 conditions 不允許為 null 值。</exception>
+        </member>
+        <member name="M:EzCoding.SystemEngines.EntityController.Entity.UpdateBuffer(EzCoding.DB.TransColValSet,EzCoding.DB.SqlCondsSet)">
+            <summary>
+            依所指定的鍵值修改資料列所有的欄位內容資料列緩衝。
+            </summary>
+            <param name="transSet">異動的資料集合。</param>
+            <param name="conditions">SQL 欄位運算的運算組合類別。</param>
+            <returns>EzCoding.DB.SqlSyntaxesReturner。</returns>
+            <exception cref="T:System.ArgumentNullException">參數 transSet 和 conditions 不允許為 null 值。</exception>
+        </member>
+    </members>
+</doc>

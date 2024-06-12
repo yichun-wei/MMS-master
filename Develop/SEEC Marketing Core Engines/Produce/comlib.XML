@@ -1,0 +1,1120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>comlib</name>
+    </assembly>
+    <members>
+        <member name="T:Temple.MainHall.BuddhaBless">
+            <summary>
+            佛祖保佑。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.AttachType">
+            <summary>
+            附加資料的類型。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachType.Image">
+            <summary>
+            圖片。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachType.File">
+            <summary>
+            檔案。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachType.Hyperlink">
+            <summary>
+            超連結。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachType.Flash">
+            <summary>
+            Flash。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachType.Text">
+            <summary>
+            純文字內容。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachType.TextWrap">
+            <summary>
+            文繞圖內容。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachType.Video">
+            <summary>
+            影片。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.AttachUse">
+            <summary>
+            附加資料用途。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachUse.Text">
+            <summary>
+            純文字顯示。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachUse.Hyperlink">
+            <summary>
+            超連結。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachUse.TextWrap">
+            <summary>
+            文繞圖內容。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachUse.Download">
+            <summary>
+            檔案下載。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachUse.Image">
+            <summary>
+            圖片。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachUse.Flash">
+            <summary>
+            Flash。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.AttachUse.Video">
+            <summary>
+            影片。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.EventType">
+            <summary>
+            事件類型。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.EventType.Debug">
+            <summary>
+            除錯。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.EventType.Notice">
+            <summary>
+            通知。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.EventType.Warning">
+            <summary>
+            警告。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.EventType.Error">
+            <summary>
+            可預期攔截的錯誤。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.EventType.Fatal">
+            <summary>
+            不在預期攔截範圍內的錯誤。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.LoginKeepingBy">
+            <summary>
+            登入鍵值的保存方式。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.LoginKeepingBy.Session">
+            <summary>
+            以 Session 保存。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.LoginKeepingBy.Cookies">
+            <summary>
+            以 Cookies 保存。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.OperPosition">
+            <summary>
+            使用者在網站上操作的位置。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.OperPosition.GeneralClient">
+            <summary>
+            位於一般使用者介面的所有操作。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.OperPosition.SysMgtClient">
+            <summary>
+            位於 /sys_mgt 下的所有操作。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.SystemPhase">
+            <summary>
+            目前系統的運作階段。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.Development">
+            <summary>
+            開發階段（亦為 Debug 階段）。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.BlackBoxTest">
+            <summary>
+            黑箱測試階段（亦為 Unit test 階段）。針對某個 component 或 method 的測試。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.WhiteBoxTest">
+            <summary>
+            白箱測試階段。針對內容實作的流程測試。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.StressTest">
+            <summary>
+            壓力測試階段。測試系統的效能極限。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.RegressionTest">
+            <summary>
+            回歸測試階段。當新功能增加的同時，會不會影響舊功能的正確性測試。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.IntegrationTest">
+            <summary>
+            整合測試階段。兩個或多個系統以上的整合測試。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.SystemTest">
+            <summary>
+            系統測試階段。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.AlphaTest">
+            <summary>
+            內部測試人員的測試階段。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.BetaTest">
+            <summary>
+            外部使用者的測試階段。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.MonkeyTest">
+            <summary>
+            搞怪測試階段。盡可能惡搞來測試系統的穩定度（針對功能面）。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.AcceptanceTest">
+            <summary>
+            驗收測試。測試系統或產品是否滿足客戶的需求。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.SystemPhase.Production">
+            <summary>
+            產品或上線階段。系統已正式運作。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.ULShelfStatus">
+            <summary>
+            上下架狀態。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.ULShelfStatus.All">
+            <summary>
+            全部。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.ULShelfStatus.Normal">
+            <summary>
+            已上架未下架。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.ULShelfStatus.HasUpper">
+            <summary>
+            已上架，但不論是否已下架。
+            </summary>
+        </member>
+        <member name="F:Seec.Marketing.ULShelfStatus.OnlyLower">
+            <summary>
+            僅已下架。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.IErpCuster">
+            <summary>
+            ERP 客戶介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.CustomerId">
+            <summary>
+            客戶 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.LastUpdateDate">
+            <summary>
+            最後修改時間。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.CustomerNumber">
+            <summary>
+            客戶編號。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.CustomerName">
+            <summary>
+            客戶名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.ShipAddressId">
+            <summary>
+            送貨地址 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.ShipAddress1">
+            <summary>
+            送貨地址。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.BillAddressId">
+            <summary>
+            帳單地址 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.BillAddress1">
+            <summary>
+            帳單地址。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.CustomerCategoryCode">
+            <summary>
+            客戶種類代碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.Meaning">
+            <summary>
+            客戶種類。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.ShipToSiteUseId">
+            <summary>
+            送貨地點 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.InvoiceToSiteUseId">
+            <summary>
+            帳單地點 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.OrderTypeId">
+            <summary>
+            訂單型態 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.TypeName">
+            <summary>
+            訂單型態。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.PriceListId">
+            <summary>
+            價目表 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.CurrencyCode">
+            <summary>
+            幣別。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.SalesRepId">
+            <summary>
+            營業員 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.SalesName">
+            <summary>
+            營業員姓名。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.AreaCode">
+            <summary>
+            電話區碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.Phone">
+            <summary>
+            電話。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.ContactId">
+            <summary>
+            聯絡人 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.ConName">
+            <summary>
+            聯絡人姓名。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpCuster.Fax">
+            <summary>
+            傳真。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.IErpOrder">
+            <summary>
+            ERP 訂單介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.HeaderId">
+            <summary>
+            ERP 訂單 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.CreationDate">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.CreatedBY">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.OriginalSystemSourceCode">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.OriginalSystemReference">
+            <summary>
+            XS 營銷訂單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.OrderNumber">
+            <summary>
+            ERP 訂單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.OrderStatus">
+            <summary>
+            ERP 訂單狀態（已輸入,已登錄,已超額,超額已核發,已取消,已關閉）。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.ShipNumber">
+            <summary>
+            ERP 交貨號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.Attribute1">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.Attribute2">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.Attribute3">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.LastUpdateDate">
+            <summary>
+            訂單狀態最後更新時間。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpOrder.OpenFlag">
+            <summary>
+            。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.ICurrencyBook">
+            <summary>
+            ERP 幣別表介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ICurrencyBook.ListName">
+            <summary>
+            價目表名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ICurrencyBook.PriceListId">
+            <summary>
+            價目表 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ICurrencyBook.CurrencyCode">
+            <summary>
+            幣別。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface">
+            <summary>
+            SO-PRICE-ADJUSTMENTS-INTERFACE 介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface.CreationDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface.CreatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface.LastUpdateDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface.LastUpdatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface.OrderSourceId">
+            <summary>
+            常數數值：1103。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface.OriginalSystemReference">
+            <summary>
+            內銷-訂單號碼；外銷-交貨單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface.OriginalSystemLineReference">
+            <summary>
+            明細項次。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface.DiscountId">
+            <summary>
+            折扣 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOPriceAdjustmentsInterface.Percent">
+            <summary>
+            折扣比率數值。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.ISOLinesInterfaceAll">
+            <summary>
+            SO-LINES-INTERFACE-ALL 介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.CreationDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.CreatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.LastUpdateDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.LastUpdatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.OriginalSystemReference">
+            <summary>
+            內銷-訂單號碼；外銷-交貨單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.OriginalSystemLineReference">
+            <summary>
+            明細項次，ORIGINAL_SYSTEM_REFERENCE + ORIGINAL_SYSTEM_LINE_REFERENCE，兩個欄位串聯須為 UNIQUE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.LineNumber">
+            <summary>
+            明細項次。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.LineType">
+            <summary>
+            常數：REGULAR。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.UnitCode">
+            <summary>
+            常數：EA。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.OrderedQuantity">
+            <summary>
+            訂單數量。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.DateRequestedCurrent">
+            <summary>
+            訂單日期。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.InventoryItemId">
+            <summary>
+            料號 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.ScheduledShipmentDate">
+            <summary>
+            預計出貨日(內外銷都相同規則)。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.WarehouseId">
+            <summary>
+            常數數值：228。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.Attribute2">
+            <summary>
+            內銷-專案編號；外銷-訂單單號。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.CalculatePrice">
+            <summary>
+            常數：Y。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.OrderSourceId">
+            <summary>
+            常數數值：1103。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.ShipToCustomerId">
+            <summary>
+            客戶 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLinesInterfaceAll.ScheduleStatusCode">
+            <summary>
+            常數：DEMANDED。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.ISOLineDetailsInterface">
+            <summary>
+            SO-LINE-DETAILS-INTERFACE 介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.CreationDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.CreatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.LastUpdateDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.LastUpdatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.OrderSourceId">
+            <summary>
+            常數數值：1103。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.OriginalSystemReference">
+            <summary>
+            內銷-訂單號碼；外銷-交貨單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.OriginalSystemLineReference">
+            <summary>
+            明細項次，ORIGINAL_SYSTEM_REFERENCE + ORIGINAL_SYSTEM_LINE_REFERENCE 兩個欄位串聯須為 UNIQUE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.Quantity">
+            <summary>
+            訂單數量。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.ScheduleDate">
+            <summary>
+            預計出貨日(內外銷都相同規則)。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.Subinventory">
+            <summary>
+            倉庫名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.WarehouseId">
+            <summary>
+            常數數值：228。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOLineDetailsInterface.ScheduleStatusCode">
+            <summary>
+            常數：DEMANDED。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.ISOHeadersInterfaceAll">
+            <summary>
+            SO-PRICE-ADJUSTMENTS-INTERFACE 介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.CreationDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.CreatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.LastUpdateDate">
+            <summary>
+            SYSDATE。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.LastUpdatedBY">
+            <summary>
+            常數數值：6214。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.OriginalSystemReference">
+            <summary>
+            內銷-訂單號碼；外銷-交貨單號碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.CustomerId">
+            <summary>
+            客戶檔之 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.OrderTypeId">
+            <summary>
+            客戶檔之 ORDER_TYPE_ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.OrderSourceId">
+            <summary>
+            常數數值：1103。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.OrderCategory">
+            <summary>
+            常數：R。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.DateOrdered">
+            <summary>
+            訂單日期。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.CurrencyCode">
+            <summary>
+            幣別。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.ConversionTypeCode">
+            <summary>
+            常數數值：1020。
+            外銷用。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.SalesRepId">
+            <summary>
+            客戶檔之營業員 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.InvoiceToSiteUseId">
+            <summary>
+            客戶檔之帳單地點 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.ShipToSiteUseId">
+            <summary>
+            客戶檔之送貨地點 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.PriceListId">
+            <summary>
+            客戶檔之價目表 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.ISOHeadersInterfaceAll.EnteredStateId">
+            <summary>
+            常數數值：1。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.IErpDct">
+            <summary>
+            ERP 折扣介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpDct.DiscountId">
+            <summary>
+            折扣 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpDct.DiscountName">
+            <summary>
+            折扣名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpDct.AutomaticDiscountFlag">
+            <summary>
+            自動計算折扣。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpDct.OverrideAllowedFlag">
+            <summary>
+            允許修訂。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpDct.PriceListId">
+            <summary>
+            價目表 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpDct.ListName">
+            <summary>
+            價目表名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpDct.DiscountType">
+            <summary>
+            折扣型態（1:內銷表頭 2:內銷明細 3:外銷表頭 4:外銷明細）。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpDct.LastUpdateDate">
+            <summary>
+            折扣最後更新日期。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.IPriceBook">
+            <summary>
+            ERP 價目表介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IPriceBook.ListName">
+            <summary>
+            價目表名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IPriceBook.PriceListId">
+            <summary>
+            價目表 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IPriceBook.InventoryItemId">
+            <summary>
+            料號 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IPriceBook.Segment1">
+            <summary>
+            料號。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IPriceBook.PrimaryUnitOFMeasure">
+            <summary>
+            單位。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IPriceBook.Description">
+            <summary>
+            摘要。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IPriceBook.ListPrice">
+            <summary>
+            牌價。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IPriceBook.CurrencyCode">
+            <summary>
+            幣別。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.IErpInv">
+            <summary>
+            ERP 庫存介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.InventoryItemId">
+            <summary>
+            料號 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.Item">
+            <summary>
+            料號。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.Description">
+            <summary>
+            料號摘要。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.UnitWeight">
+            <summary>
+            料號重量。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.WeightUomCode">
+            <summary>
+            重量單位。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.Discount">
+            <summary>
+            預設明細折數。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.Segment1">
+            <summary>
+            料號大分類。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.Segment2">
+            <summary>
+            料號中分類。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.Segment3">
+            <summary>
+            料號小分類。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.OrganizationId">
+            <summary>
+            料號所屬製造組織 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.OrganizationCode">
+            <summary>
+            料號所屬製造組織代碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.EnabledFlag">
+            <summary>
+            料號啟用。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.LastUpdateDate">
+            <summary>
+            料號最後更新日期。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpInv.XSDItem">
+            <summary>
+            XS型號。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.IOnHand">
+            <summary>
+            ERP 倉庫在手量介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IOnHand.InventoryItemId">
+            <summary>
+            料號 ID。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IOnHand.Segment1">
+            <summary>
+            料號。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IOnHand.SubinventoryCode">
+            <summary>
+            倉庫。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IOnHand.OnhandQty">
+            <summary>
+            在手量。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.Erp.IErpWhse">
+            <summary>
+            ERP 倉庫介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpWhse.SecondaryInventoryName">
+            <summary>
+            名稱。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.Erp.IErpWhse.OrganizationId">
+            <summary>
+            倉庫 ID。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.IExtItemCats">
+            <summary>
+            外銷商品分類介面。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.IExtItemCats.ExportItemType">
+            <summary>
+            產品別。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.IExtItemCats.Category1">
+            <summary>
+            分類 1。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.IExtItemCats.Category2">
+            <summary>
+            分類 2。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.IExtItemCats.Category3">
+            <summary>
+            分類 3。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.IExtItemCats.Category4">
+            <summary>
+            分類 4。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.IExtItemCats.Category5">
+            <summary>
+            分類 5。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.CustEventArgs">
+            <summary>
+            自定的通用 EventArgs。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.CustEventArgs.Tag">
+            <summary>
+            物件相關聯的使用者定義資料。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.TalkResponse">
+            <summary>
+            介接回應。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.TalkResponse.Code">
+            <summary>
+            代碼。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.TalkResponse.Desc">
+            <summary>
+            描述。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.TalkResponse.JsonObj">
+            <summary>
+            回應的 Json 物件字串。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.ComUtil">
+            <summary>
+            通用工具。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.ComUtil.PresaveOperation(System.String)">
+            <summary>
+            儲存檔案的前置操作。
+            </summary>
+            <param name="dirPath">指定目錄的絕對路徑。</param>
+        </member>
+        <member name="M:Seec.Marketing.ComUtil.PresaveOperation(System.String,System.Boolean)">
+            <summary>
+            儲存檔案的前置操作。
+            </summary>
+            <param name="dirPath">指定目錄的絕對路徑。</param>
+            <param name="clearAllFiles">目錄存在時是否清空該目錄的所有檔案。</param>
+        </member>
+        <member name="M:Seec.Marketing.ComUtil.DeleteFilesInDirectory(System.String,System.IO.SearchOption)">
+            <summary>
+            刪除指定目錄下的檔案。
+            </summary>
+            <param name="dirPath">目錄路徑。</param>
+            <param name="option">指示刪除指定目錄下的所有檔案外，是否也包含所有子目錄的所有檔案。</param>
+        </member>
+        <member name="M:Seec.Marketing.ComUtil.DeleteFilesInDirectory(System.IO.DirectoryInfo,System.IO.SearchOption)">
+            <summary>
+            刪除指定目錄下的檔案。
+            </summary>
+            <param name="dirPath">System.IO.DirectoryInfo。</param>
+            <param name="option">指示刪除指定目錄下的所有檔案外，是否也包含所有子目錄的所有檔案。</param>
+        </member>
+        <member name="M:Seec.Marketing.ComUtil.DeleteDirectory(System.String)">
+            <summary>
+            刪除目錄及其子目錄和檔案。
+            </summary>
+            <param name="dirPath">目錄路徑。</param>
+        </member>
+        <member name="M:Seec.Marketing.ComUtil.GetMD5HashValue(System.String)">
+            <summary>
+            取得 MD5 雜湊值。
+            </summary>
+            <param name="value">要雜湊的字串。</param>
+        </member>
+        <member name="M:Seec.Marketing.ComUtil.ToDispTel(System.String,System.String)">
+            <summary>
+            取得顯示用的電話。
+            </summary>
+            <param name="zip">區碼。</param>
+            <param name="tel">電話。</param>
+        </member>
+        <member name="T:Seec.Marketing.CustDefVal">
+            <summary>
+            自訂的預設值常數定義。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.CustDefVal.FTSearch">
+            <summary>
+            Null 的全文檢索查詢。
+            </summary>
+        </member>
+        <member name="P:Seec.Marketing.CustDefVal.AttachUse">
+            <summary>
+            Null 的附加資料用途。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.CustJson">
+            <summary>
+            自訂 JSON 控制類別。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.CustJson.SerializeObject(System.Object)">
+            <summary>
+            序列化物件為 JSON 格式。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.CustJson.DeserializeObject(System.String)">
+            <summary>
+            還原 JSON 格式為 object。
+            </summary>
+        </member>
+        <member name="M:Seec.Marketing.CustJson.DeserializeObject``1(System.String)">
+            <summary>
+            還原 JSON 格式為指定物件。
+            </summary>
+        </member>
+        <member name="T:Seec.Marketing.DevMark">
+            <summary>
+            開發註記。
+            </summary>
+        </member>
+    </members>
+</doc>

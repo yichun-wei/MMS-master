@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* CSS Document */
+#header, #Menu, .btnBox, a.choose_btn, .btn_top {
+	display:none !important;
+}
+#center, #footer {
+	width:100% !important;
+	margin:0 !important;
+	padding:0 !important;
+	font-size:1em !important;
+}
+#breadcrumbs li:first-child {
+	padding-left:0 !important;
+}
+/* 文字列表及表單的框線設定 */
+.ListTable ,.form {
+	width:100% !important;
+}
+/* footer */
+#footer {
+	margin-top:0 !important;
+}
+
+
+.ListTable_title { color:#D20300 !important; }
+.form_title { color:#2c2c2c !important; }

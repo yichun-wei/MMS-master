@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD4A5C8E-0112-41C0-B819-F36337C3943A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Seec.Marketing</RootNamespace>
+    <AssemblyName>comlib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Produce\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Produce\comlib.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Produce\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Produce\comlib.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="eccore, Version=3.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\函式庫_v2009\Produce\eccore.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\函式庫_v2009\Reference\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BuddhaBless.cs" />
+    <Compile Include="Enum\AttachType.cs" />
+    <Compile Include="Enum\AttachUse.cs" />
+    <Compile Include="Enum\EventType.cs" />
+    <Compile Include="Enum\LoginKeepingBy.cs" />
+    <Compile Include="Enum\OperPosition.cs" />
+    <Compile Include="Enum\SystemPhase.cs" />
+    <Compile Include="Enum\ULShelfStatus.cs" />
+    <Compile Include="Interface\Erp\IErpCuster.cs" />
+    <Compile Include="Interface\Erp\IErpOrder.cs" />
+    <Compile Include="Interface\Erp\ICurrencyBook.cs" />
+    <Compile Include="Interface\Erp\ISOPriceAdjustmentsInterface.cs" />
+    <Compile Include="Interface\Erp\ISOLinesInterfaceAll.cs" />
+    <Compile Include="Interface\Erp\ISOLineDetailsInterface.cs" />
+    <Compile Include="Interface\Erp\ISOHeadersInterfaceAll.cs" />
+    <Compile Include="Interface\Erp\IErpDct.cs" />
+    <Compile Include="Interface\Erp\IPriceBook.cs" />
+    <Compile Include="Interface\Erp\IErpInv.cs" />
+    <Compile Include="Interface\Erp\IOnHand.cs" />
+    <Compile Include="Interface\Erp\IErpWhse.cs" />
+    <Compile Include="Interface\Ext\IExtItemCats.cs" />
+    <Compile Include="Object\CustEventArgs.cs" />
+    <Compile Include="Object\TalkResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Static\ComUtil.cs" />
+    <Compile Include="Static\CustDefVal.cs" />
+    <Compile Include="Static\CustJson.cs" />
+    <Compile Include="Static\DevMark.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

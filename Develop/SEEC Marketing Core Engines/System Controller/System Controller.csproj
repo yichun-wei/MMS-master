@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{64B03285-CA08-4297-B71A-1949ADC9A52C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Seec.Marketing</RootNamespace>
+    <AssemblyName>sysctrl</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Produce\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Produce\sysctrl.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Produce\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Produce\sysctrl.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="eccore, Version=3.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\函式庫_v2009\Produce\eccore.dll</HintPath>
+    </Reference>
+    <Reference Include="ecdb, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\函式庫_v2009\Produce\ecdb.dll</HintPath>
+    </Reference>
+    <Reference Include="ecentity, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\函式庫_v2009\Produce\ecentity.dll</HintPath>
+    </Reference>
+    <Reference Include="ecsys, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\函式庫_v2009\Produce\ecsys.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\ERP 相關\ErpDct.cs" />
+    <Compile Include="Entities\ERP 相關\ErpInv.cs" />
+    <Compile Include="Entities\ERP 相關\ErpCuster.cs" />
+    <Compile Include="Entities\ERP 相關\ExtItemDetails.cs" />
+    <Compile Include="Entities\ERP 相關\ExtItemType.cs" />
+    <Compile Include="Entities\ERP 相關\ProjQuote.cs" />
+    <Compile Include="Entities\ERP 相關\ErpWhse.cs" />
+    <Compile Include="Entities\ERP 相關\ProjQuote_dist.cs" />
+    <Compile Include="Entities\營銷相關\內銷相關\備貨單相關\PGOrderDet.cs" />
+    <Compile Include="Entities\營銷相關\內銷相關\備貨單相關\PGOrder.cs" />
+    <Compile Include="Entities\營銷相關\內銷相關\訂單相關\DomOrderDet.cs" />
+    <Compile Include="Entities\營銷相關\內銷相關\訂單相關\DomOrder.cs" />
+    <Compile Include="Entities\營銷相關\ErpDctRel.cs" />
+    <Compile Include="Entities\其他\Atts.cs" />
+    <Compile Include="Entities\其他\PubCat.cs" />
+    <Compile Include="Entities\其他\RelTab.cs" />
+    <Compile Include="Entities\營銷相關\外銷相關\出貨單相關\ExtShippingOrderDet.cs" />
+    <Compile Include="Entities\營銷相關\外銷相關\出貨單相關\ExtShippingOrder.cs" />
+    <Compile Include="Entities\營銷相關\外銷相關\報價單\ExtQuotn.cs" />
+    <Compile Include="Entities\營銷相關\外銷相關\報價單\ExtQuotnDet.cs" />
+    <Compile Include="Entities\營銷相關\外銷相關\生產單相關\ExtProdOrder.cs" />
+    <Compile Include="Entities\營銷相關\外銷相關\生產單相關\ExtProdOrderDet.cs" />
+    <Compile Include="Entities\營銷相關\外銷相關\訂單相關\ExtOrderDet.cs" />
+    <Compile Include="Entities\營銷相關\外銷相關\訂單相關\ExtOrder.cs" />
+    <Compile Include="Entities\系統使用者相關\SysUser.cs" />
+    <Compile Include="Entities\系統使用者相關\SysUserGrp.cs" />
+    <Compile Include="Entities\ERP 相關\記錄檔相關\DataTransLog.cs" />
+    <Compile Include="Entities\ERP 相關\記錄檔相關\LoginLog.cs" />
+    <Compile Include="Entities\ERP 相關\記錄檔相關\SysLog.cs" />
+    <Compile Include="EntityHelper.cs" />
+    <Compile Include="Object\DataTransChildTable.cs" />
+    <Compile Include="Object\InfoBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common Library\Common Library.csproj">
+      <Project>{bd4a5c8e-0112-41c0-b819-f36337c3943a}</Project>
+      <Name>Common Library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

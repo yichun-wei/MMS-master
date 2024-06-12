@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CustomersSyncSql" xml:space="preserve">
+    <value>SELECT 
+     S1.CUSTOMER_ID
+    ,S1.LAST_UPDATE_DATE --by fan
+    ,S1.CUSTOMER_NUMBER
+    ,S1.CUSTOMER_NAME
+    ,S1.SHIP_ADDRESS_ID
+    ,S1.BILL_ADDRESS_ID
+    ,S1.SHIP_ADDRESS1
+    ,S1.BILL_ADDRESS1
+    ,S1.CUSTOMER_CATEGORY_CODE
+    ,S1.MEANING
+    ,S1.SHIP_TO_SITE_USE_ID
+    ,S1.INVOICE_TO_SITE_USE_ID
+    ,S1.ORDER_TYPE_ID
+    ,S1.TYPE_NAME
+    ,S1.PRICE_LIST_ID
+    ,S3.CURRENCY_CODE --by fan
+    ,S1.SALESREP_ID
+    ,S1.SALES_NAME
+    ,S2.AREA_CODE
+    ,S2.PHONE
+    ,S2.CONTACT_ID
+    ,S2.CON_NAME
+    ,S2.FAX
+FROM (
+    SELECT RC.CUSTOMER_ID
+        ,RC.LAST_UPDATE_DATE --by fan
+        ,RC.CUSTOMER_NUMBER
+        ,RC.CUSTOMER_NAME
+        ,RC.CUSTOMER_CATEGORY_CODE
+        ,AL.MEANING
+        ,RA.ADDRESS_ID SHIP_ADDRESS_ID
+        ,RA.ADDRESS1 SHIP_ADDRESS1
+        ,RA2.ADDRESS_ID BILL_ADDRESS_ID
+        ,RA2.ADDRESS1 BILL_ADDRESS1
+        ,RSUS.SITE_USE_ID SHIP_TO_SITE_USE_ID
+        ,RSUB.SITE_USE_ID INVOICE_TO_SITE_USE_ID
+        ,RSUB.TYPE_NAME
+        ,RSUB.ORDER_TYPE_ID
+        ,SALES.SALESREP_ID
+        ,SALES.NAME SALES_NAME
+        ,RSUB.STATUS BILL_STATUS
+        ,RSUS.STATUS SHIP_STATUS
+        ,RSUS.PRICE_LIST_ID
+    FROM AR.RA_CUSTOMERS RC
+        ,AR.RA_ADDRESSES_ALL RA
+        ,AR.RA_ADDRESSES_ALL RA2
+        ,AR.RA_SALESREPS_ALL SALES
+        ,(
+            SELECT *
+            FROM AR.RA_SITE_USES_ALL
+            WHERE SITE_USE_CODE = 'SHIP_TO'
+                AND PRIMARY_FLAG = 'Y'
+                AND STATUS = 'A'
+            ) RSUS
+        ,(
+            SELECT RSU.*,SOT.NAME TYPE_NAME
+            FROM AR.RA_SITE_USES_ALL RSU
+                ,OE.SO_ORDER_TYPES_ALL SOT
+            WHERE SITE_USE_CODE = 'BILL_TO'
+                AND RSU.PRIMARY_FLAG = 'Y'
+                AND RSU.STATUS = 'A'
+                AND RSU.ORDER_TYPE_ID= SOT.ORDER_TYPE_ID(+)
+                AND SOT.ORDER_TYPE_ID IS NOT NULL --要維護完整才能抓取
+            ) RSUB
+          ,(SELECT
+          LOOKUP_CODE,
+          MEANING
+          FROM
+          AR.AR_LOOKUPS
+          WHERE
+          LOOKUP_TYPE = 'CUSTOMER_CATEGORY'
+              )  AL
+    WHERE RC.CUSTOMER_ID = RA.CUSTOMER_ID
+        AND RC.CUSTOMER_ID = RA2.CUSTOMER_ID
+        AND RA.ADDRESS_ID = RSUS.ADDRESS_ID --皆已主要為主
+        AND RA2.ADDRESS_ID = RSUB.ADDRESS_ID --皆已主要為主
+        AND RSUS.PRIMARY_SALESREP_ID=SALES.SALESREP_ID(+)
+        AND RA.STATUS = 'A'
+        AND RC.STATUS='A'
+        AND RC.CUSTOMER_CATEGORY_CODE = AL.LOOKUP_CODE(+)
+        AND RA.ORG_ID = 202
+        AND RC.CUSTOMER_CATEGORY_CODE IS NOT NULL --要維護完整才能抓取
+        
+       ) S1
+    ,(
+        (
+            SELECT PH.CUSTOMER_ID
+          ,PH.ADDRESS_ID
+                ,PH.PHONE
+                ,FAX.FAX
+                ,PH.AREA_CODE
+                ,PH.CONTACT_ID
+                ,PH.CON_NAME
+            FROM (
+                SELECT RP.CUSTOMER_ID
+                    ,RP.PHONE_NUMBER PHONE
+                    ,RP.AREA_CODE
+                    ,RP.ADDRESS_ID
+                    ,CON.CONTACT_ID
+                    ,CON.LAST_NAME||CON.FIRST_NAME CON_NAME
+                FROM AR.RA_PHONES RP
+                    ,AR.RA_CUSTOMERS RC
+                    ,AR.RA_CONTACTS CON
+                WHERE RP.CONTACT_ID IS NOT NULL --已地址為主 原條件A.CONTACT_ID IS NULL 
+                    AND RP.ADDRESS_ID IS NOT NULL --已地址為主 原條件沒有
+                    AND RP.CUSTOMER_ID = RC.CUSTOMER_ID
+                    AND RP.CONTACT_ID=CON.CONTACT_ID
+                    AND RP.PHONE_TYPE = 'GEN'
+                    AND RP.PRIMARY_FLAG = 'Y'
+                ) PH
+                ,(
+                SELECT RP.CUSTOMER_ID
+                    ,RP.PHONE_NUMBER FAX
+                    ,RP.AREA_CODE
+                    ,RP.ADDRESS_ID
+                FROM AR.RA_PHONES RP
+                    ,AR.RA_CUSTOMERS RC
+                WHERE RP.CONTACT_ID IS NOT  NULL--已地址為主 原條件A.CONTACT_ID IS NULL 
+                    AND RP.ADDRESS_ID IS NOT  NULL--已地址為主 原條件沒有
+                    AND RP.CUSTOMER_ID = RC.CUSTOMER_ID
+                    AND (RP.PHONE_TYPE     = 'FAX')
+                                   ) FAX
+            WHERE PH.ADDRESS_ID = FAX.ADDRESS_ID(+)
+            )
+        ) S2
+    ,(
+       SELECT SP.PRICE_LIST_ID, SP.CURRENCY_CODE
+       FROM OE.SO_PRICE_LISTS SP
+     ) S3 --by fan
+WHERE S1.PRICE_LIST_ID = S3.PRICE_LIST_ID --by fan
+      AND S1.SHIP_ADDRESS_ID = S2.ADDRESS_ID(+)</value>
+  </data>
+  <data name="DiscountsSyncSql" xml:space="preserve">
+    <value>SELECT
+SD.DISCOUNT_ID,
+SD.NAME DISCOUNT_NAME,
+SD.AUTOMATIC_DISCOUNT_FLAG,
+SD.OVERRIDE_ALLOWED_FLAG,
+SP.PRICE_LIST_ID,
+SP.NAME LIST_NAME,
+--DECODE(SD.ATTRIBUTE15,'XS_HEAD_D','內銷表頭','XS_LINE_D','內銷明細','XS_HEAD_O','外銷表頭','XS_LINE_O','外銷明細') DISCOUNT_TYPE,
+DECODE(SD.ATTRIBUTE15,'XS_HEAD_D',1,'XS_LINE_D',2,'XS_HEAD_O',3,'XS_LINE_O',4) DISCOUNT_TYPE,
+SD.LAST_UPDATE_DATE
+FROM OE.SO_DISCOUNTS SD,
+     OE.SO_PRICE_LISTS SP
+WHERE
+    SP.NAME LIKE '%廈門%'
+AND SP.END_DATE_ACTIVE IS NULL
+AND SD.END_DATE_ACTIVE IS NULL
+AND SD.PRICE_LIST_ID = SP.PRICE_LIST_ID
+AND SD.ATTRIBUTE15 IS NOT NULL</value>
+  </data>
+  <data name="InventorySyncSql" xml:space="preserve">
+    <value>SELECT   MSI.INVENTORY_ITEM_ID, CA.ITEM, MSI.DESCRIPTION,CA.UNIT_WEIGHT,CA.WEIGHT_UOM_CODE, CA.DISCOUNT,CA.SEGMENT1,
+         CA.SEGMENT2, CA.SEGMENT3, MSI.ORGANIZATION_ID, MP.ORGANIZATION_CODE,
+         MSI.ENABLED_FLAG, MSI.LAST_UPDATE_DATE
+    FROM MTL_SYSTEM_ITEMS MSI,
+         (SELECT MSI.ORGANIZATION_ID, MSI.INVENTORY_ITEM_ID,
+                 MSI.SEGMENT1 ITEM, MC.SEGMENT1, MC.SEGMENT2, MC.SEGMENT3,MSI.UNIT_WEIGHT,MSI.WEIGHT_UOM_CODE,XCD.DISCOUNT
+            FROM OE.XSEEC_CATEGORY_DISCOUNT XCD, 
+            INV.MTL_ITEM_CATEGORIES MIC,
+                 INV.MTL_CATEGORIES MC,
+                 INV.MTL_SYSTEM_ITEMS MSI
+           WHERE MSI.INVENTORY_ITEM_ID = MIC.INVENTORY_ITEM_ID
+             AND MIC.CATEGORY_ID = MC.CATEGORY_ID
+             AND MSI.ORGANIZATION_ID = 228
+             AND MIC.ORGANIZATION_ID = 228
+             AND MC.STRUCTURE_ID = 50134
+             AND MC.SEGMENT1 NOT LIKE 'XA%' --A產品大分類不要計入
+             AND MC.SEGMENT2 = XCD.CATEGORY(+)
+         ) CA,
+         INV.MTL_PARAMETERS MP
+   WHERE CA.INVENTORY_ITEM_ID = MSI.INVENTORY_ITEM_ID
+     AND MSI.ORGANIZATION_ID  IN (221,222,223,224,225,226,227,230,250,351,371) --只留廈門製造組織ORG ID
+     AND MSI.ORGANIZATION_ID = MP.ORGANIZATION_ID</value>
+  </data>
+  <data name="PriceBookSyncSql" xml:space="preserve">
+    <value>SELECT 
+SPL.LIST_NAME 
+    ,SPL.PRICE_LIST_ID
+    ,MSI.INVENTORY_ITEM_ID
+    ,MSI.SEGMENT1 
+    ,MSI.PRIMARY_UNIT_OF_MEASURE 
+    ,MSI.DESCRIPTION 
+    ,SPL.LIST_PRICE 
+    ,SPL.CURRENCY_CODE 
+
+FROM INV.MTL_SYSTEM_ITEMS MSI
+
+    ,(SELECT MSI.SEGMENT1 ITEM
+            ,MSI.INVENTORY_ITEM_ID
+            ,MSI.DESCRIPTION
+            ,SPL.LIST_PRICE
+            ,SPL.PRICE_LIST_ID
+            ,SP.NAME LIST_NAME
+            ,SP.CURRENCY_CODE
+        FROM  OE.SO_PRICE_LISTS SP
+             ,OE.SO_PRICE_LIST_LINES SPL
+             ,INV.MTL_SYSTEM_ITEMS MSI
+        WHERE SPL.INVENTORY_ITEM_ID = MSI.INVENTORY_ITEM_ID
+            AND MSI.ORGANIZATION_ID = 228+0
+            AND SP.PRICE_LIST_ID=SPL.PRICE_LIST_ID
+            AND SPL.LIST_PRICE &gt; 0
+            AND SPL.END_DATE_ACTIVE IS NULL
+            AND SP.END_DATE_ACTIVE IS NULL
+            AND SP.ATTRIBUTE15='Y' --FOR XS營銷系統用的價目表
+            AND SP.NAME LIKE '%廈門%'
+        ) SPL
+WHERE MSI.ENABLED_FLAG = 'Y'
+    AND MSI.INVENTORY_ITEM_ID = SPL.INVENTORY_ITEM_ID
+    AND MSI.ORGANIZATION_ID =228</value>
+  </data>
+</root>
